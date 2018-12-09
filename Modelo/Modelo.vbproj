@@ -329,6 +329,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\HOMINIS.TTF" />
     <None Include="Resources\ultimo.png" />
   </ItemGroup>

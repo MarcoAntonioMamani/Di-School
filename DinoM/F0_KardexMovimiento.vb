@@ -532,49 +532,49 @@ Public Class F0_KardexMovimiento
 
     Private Sub P_GenerarReporte()
 
-        If Not IsNothing(P_Global.Visualizador) Then
-            P_Global.Visualizador.Close()
-        End If
+        'If Not IsNothing(P_Global.Visualizador) Then
+        '    P_Global.Visualizador.Close()
+        'End If
 
-        P_Global.Visualizador = New Visualizador
-        If (Lote = True) Then
-            Dim objrep As New R_KardexInventarioProducto
-            '' GenerarNro(_dt)
-            ''objrep.SetDataSource(Dt1Kardex)
-            objrep.SetDataSource(CType(Dgj1Datos.DataSource, DataTable))
-            objrep.SetParameterValue("FechaIni", tbFechaI.Value.ToString("yyyy/MM/dd"))
-            objrep.SetParameterValue("FechaFin", tbFechaF.Value.ToString("yyyy/MM/dd"))
-            objrep.SetParameterValue("Saldo", tbsaldo.Text)
-            objrep.SetParameterValue("producto", tbproducto.Text)
-            objrep.SetParameterValue("codProducto", tbCodigo.Text)
-            objrep.SetParameterValue("deposito", cbAlmacen.Text)
-            'MReportViewer.ReportSource = objrep
-            'MReportViewer.Show()
-            'MReportViewer.BringToFront()
-            P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-            P_Global.Visualizador.Show() 'Comentar
-            P_Global.Visualizador.BringToFront() 'Comentar
-        Else
-            Dim objrep As New R_KardexInventarioProductoSinLote
-            '' GenerarNro(_dt)
-            ''objrep.SetDataSource(Dt1Kardex)
-            objrep.SetDataSource(CType(Dgj1Datos.DataSource, DataTable))
-            objrep.SetParameterValue("FechaIni", tbFechaI.Value.ToString("yyyy/MM/dd"))
-            objrep.SetParameterValue("FechaFin", tbFechaF.Value.ToString("yyyy/MM/dd"))
-            objrep.SetParameterValue("Saldo", tbsaldo.Text)
-            objrep.SetParameterValue("producto", tbproducto.Text)
-            objrep.SetParameterValue("codProducto", tbCodigo.Text)
-            objrep.SetParameterValue("deposito", cbAlmacen.Text)
-            'MReportViewer.ReportSource = objrep
+        'P_Global.Visualizador = New Visualizador
+        'If (Lote = True) Then
+        '    Dim objrep As New R_KardexInventarioProducto
+        '    '' GenerarNro(_dt)
+        '    ''objrep.SetDataSource(Dt1Kardex)
+        '    objrep.SetDataSource(CType(Dgj1Datos.DataSource, DataTable))
+        '    objrep.SetParameterValue("FechaIni", tbFechaI.Value.ToString("yyyy/MM/dd"))
+        '    objrep.SetParameterValue("FechaFin", tbFechaF.Value.ToString("yyyy/MM/dd"))
+        '    objrep.SetParameterValue("Saldo", tbsaldo.Text)
+        '    objrep.SetParameterValue("producto", tbproducto.Text)
+        '    objrep.SetParameterValue("codProducto", tbCodigo.Text)
+        '    objrep.SetParameterValue("deposito", cbAlmacen.Text)
+        '    'MReportViewer.ReportSource = objrep
+        '    'MReportViewer.Show()
+        '    'MReportViewer.BringToFront()
+        '    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+        '    P_Global.Visualizador.Show() 'Comentar
+        '    P_Global.Visualizador.BringToFront() 'Comentar
+        'Else
+        '    Dim objrep As New R_KardexInventarioProductoSinLote
+        '    '' GenerarNro(_dt)
+        '    ''objrep.SetDataSource(Dt1Kardex)
+        '    objrep.SetDataSource(CType(Dgj1Datos.DataSource, DataTable))
+        '    objrep.SetParameterValue("FechaIni", tbFechaI.Value.ToString("yyyy/MM/dd"))
+        '    objrep.SetParameterValue("FechaFin", tbFechaF.Value.ToString("yyyy/MM/dd"))
+        '    objrep.SetParameterValue("Saldo", tbsaldo.Text)
+        '    objrep.SetParameterValue("producto", tbproducto.Text)
+        '    objrep.SetParameterValue("codProducto", tbCodigo.Text)
+        '    objrep.SetParameterValue("deposito", cbAlmacen.Text)
+        '    'MReportViewer.ReportSource = objrep
 
-            'MReportViewer.Show()
-            'MReportViewer.BringToFront()
+        '    'MReportViewer.Show()
+        '    'MReportViewer.BringToFront()
 
-            P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-            P_Global.Visualizador.Show() 'Comentar
-            P_Global.Visualizador.BringToFront() 'Comentar
-        End If
-       
+        '    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+        '    P_Global.Visualizador.Show() 'Comentar
+        '    P_Global.Visualizador.BringToFront() 'Comentar
+        'End If
+
     End Sub
 
     Private Sub btActualizar_Click(sender As Object, e As EventArgs) Handles btActualizar.Click
