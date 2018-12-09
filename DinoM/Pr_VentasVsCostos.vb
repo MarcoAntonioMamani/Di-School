@@ -51,40 +51,40 @@ Public Class Pr_VentasVsCostos
                 End If
     End Sub
     Private Sub _prCargarReporte()
-        Dim _dt As New DataTable
-        _prInterpretarDatos(_dt)
-        If (_dt.Rows.Count > 0) Then
-            If (swTipoVenta.Value = True) Then
-                Dim objrep As New R_VentasCostosAlmacenVendedor
-                objrep.SetDataSource(_dt)
-                Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-                objrep.SetParameterValue("usuario", L_Usuario)
-                objrep.SetParameterValue("fechaI", fechaI)
-                objrep.SetParameterValue("fechaF", fechaF)
-                MReportViewer.ReportSource = objrep
-                MReportViewer.Show()
-                MReportViewer.BringToFront()
-            Else
-                Dim objrep As New R_VentasCostosVendedorAlmacen
-                objrep.SetDataSource(_dt)
-                Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-                objrep.SetParameterValue("usuario", L_Usuario)
-                objrep.SetParameterValue("fechaI", fechaI)
-                objrep.SetParameterValue("fechaF", fechaF)
-                MReportViewer.ReportSource = objrep
-                MReportViewer.Show()
-                MReportViewer.BringToFront()
-            End If
+        'Dim _dt As New DataTable
+        '_prInterpretarDatos(_dt)
+        'If (_dt.Rows.Count > 0) Then
+        '    If (swTipoVenta.Value = True) Then
+        '        Dim objrep As New R_VentasCostosAlmacenVendedor
+        '        objrep.SetDataSource(_dt)
+        '        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
+        '        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        '        objrep.SetParameterValue("usuario", L_Usuario)
+        '        objrep.SetParameterValue("fechaI", fechaI)
+        '        objrep.SetParameterValue("fechaF", fechaF)
+        '        MReportViewer.ReportSource = objrep
+        '        MReportViewer.Show()
+        '        MReportViewer.BringToFront()
+        '    Else
+        '        Dim objrep As New R_VentasCostosVendedorAlmacen
+        '        objrep.SetDataSource(_dt)
+        '        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
+        '        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        '        objrep.SetParameterValue("usuario", L_Usuario)
+        '        objrep.SetParameterValue("fechaI", fechaI)
+        '        objrep.SetParameterValue("fechaF", fechaF)
+        '        MReportViewer.ReportSource = objrep
+        '        MReportViewer.Show()
+        '        MReportViewer.BringToFront()
+        '    End If
 
-        Else
-            ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
-                                       My.Resources.INFORMATION, 2000,
-                                       eToastGlowColor.Blue,
-                                       eToastPosition.BottomLeft)
-            MReportViewer.ReportSource = Nothing
-        End If
+        'Else
+        '    ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
+        '                               My.Resources.INFORMATION, 2000,
+        '                               eToastGlowColor.Blue,
+        '                               eToastPosition.BottomLeft)
+        '    MReportViewer.ReportSource = Nothing
+        'End If
 
 
 
