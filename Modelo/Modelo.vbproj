@@ -506,6 +506,7 @@
     <Content Include="Resources\iconacercar.png" />
     <Content Include="Resources\iconalejar.png" />
     <Content Include="Resources\IconFondo.png" />
+    <None Include="Resources\icono2.png" />
     <Content Include="Resources\ic_a.png" />
     <Content Include="Resources\ic_c.png" />
     <Content Include="Resources\ic_f.png" />

@@ -33,6 +33,10 @@ Partial Class F0_Libreria
         Me.GroupPanel3 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnAgregarlibreria = New DevComponents.DotNetBar.ButtonX()
+        Me.tblibreria = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lblibreria = New DevComponents.DotNetBar.LabelX()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.cbCategoria = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
@@ -40,10 +44,6 @@ Partial Class F0_Libreria
         Me.lbgrupo2 = New DevComponents.DotNetBar.LabelX()
         Me.msModulos = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SELECCIONARTODOSDELToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.btnAgregarlibreria = New DevComponents.DotNetBar.ButtonX()
-        Me.tblibreria = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lblibreria = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,11 +67,11 @@ Partial Class F0_Libreria
         Me.GroupPanel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.Panel6.SuspendLayout()
         CType(Me.cbCategoria, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbPrograma, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.msModulos.SuspendLayout()
-        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelSuperior
@@ -152,10 +152,6 @@ Partial Class F0_Libreria
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.Panel1, 0)
         '
-        'btnUltimo
-        '
-        Me.btnUltimo.Location = New System.Drawing.Point(171, 0)
-        '
         'LblPaginacion
         '
         Me.LblPaginacion.Visible = False
@@ -170,15 +166,10 @@ Partial Class F0_Libreria
         'PanelContent
         '
         Me.PanelContent.Controls.Add(Me.PanelPrecios)
-        Me.PanelContent.Size = New System.Drawing.Size(1275, 553)
         '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
-        '
-        'MSuperTabControlPanel1
-        '
-        Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(1275, 553)
         '
         'MSuperTabControl
         '
@@ -350,6 +341,71 @@ Partial Class F0_Libreria
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1269, 125)
         Me.TableLayoutPanel1.TabIndex = 236
         '
+        'Panel2
+        '
+        Me.Panel2.AutoScroll = True
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.btnAgregarlibreria)
+        Me.Panel2.Controls.Add(Me.tblibreria)
+        Me.Panel2.Controls.Add(Me.lblibreria)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(4, 4)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(372, 117)
+        Me.Panel2.TabIndex = 35
+        '
+        'btnAgregarlibreria
+        '
+        Me.btnAgregarlibreria.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnAgregarlibreria.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btnAgregarlibreria.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAgregarlibreria.Image = Global.DinoM.My.Resources.Resources.plus
+        Me.btnAgregarlibreria.ImageFixedSize = New System.Drawing.Size(35, 30)
+        Me.btnAgregarlibreria.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnAgregarlibreria.Location = New System.Drawing.Point(336, 25)
+        Me.btnAgregarlibreria.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAgregarlibreria.Name = "btnAgregarlibreria"
+        Me.btnAgregarlibreria.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(8)
+        Me.btnAgregarlibreria.Size = New System.Drawing.Size(123, 63)
+        Me.btnAgregarlibreria.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnAgregarlibreria.TabIndex = 245
+        Me.btnAgregarlibreria.Text = "Agregar"
+        '
+        'tblibreria
+        '
+        '
+        '
+        '
+        Me.tblibreria.Border.Class = "TextBoxBorder"
+        Me.tblibreria.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tblibreria.Font = New System.Drawing.Font("Open Sans Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tblibreria.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tblibreria.Location = New System.Drawing.Point(107, 29)
+        Me.tblibreria.Margin = New System.Windows.Forms.Padding(4)
+        Me.tblibreria.Name = "tblibreria"
+        Me.tblibreria.PreventEnterBeep = True
+        Me.tblibreria.Size = New System.Drawing.Size(221, 28)
+        Me.tblibreria.TabIndex = 241
+        '
+        'lblibreria
+        '
+        Me.lblibreria.AutoSize = True
+        Me.lblibreria.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lblibreria.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lblibreria.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblibreria.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.lblibreria.Location = New System.Drawing.Point(6, 31)
+        Me.lblibreria.Margin = New System.Windows.Forms.Padding(4)
+        Me.lblibreria.Name = "lblibreria"
+        Me.lblibreria.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.lblibreria.Size = New System.Drawing.Size(101, 20)
+        Me.lblibreria.TabIndex = 244
+        Me.lblibreria.Text = "Descripción:"
+        '
         'Panel6
         '
         Me.Panel6.AutoScroll = True
@@ -456,71 +512,6 @@ Partial Class F0_Libreria
         Me.SELECCIONARTODOSDELToolStripMenuItem.Size = New System.Drawing.Size(240, 36)
         Me.SELECCIONARTODOSDELToolStripMenuItem.Text = "ELIMINAR CATEGORIA"
         '
-        'Panel2
-        '
-        Me.Panel2.AutoScroll = True
-        Me.Panel2.BackColor = System.Drawing.Color.White
-        Me.Panel2.Controls.Add(Me.btnAgregarlibreria)
-        Me.Panel2.Controls.Add(Me.tblibreria)
-        Me.Panel2.Controls.Add(Me.lblibreria)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(4, 4)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(372, 117)
-        Me.Panel2.TabIndex = 35
-        '
-        'btnAgregarlibreria
-        '
-        Me.btnAgregarlibreria.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnAgregarlibreria.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btnAgregarlibreria.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAgregarlibreria.Image = Global.DinoM.My.Resources.Resources.plus
-        Me.btnAgregarlibreria.ImageFixedSize = New System.Drawing.Size(35, 30)
-        Me.btnAgregarlibreria.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnAgregarlibreria.Location = New System.Drawing.Point(336, 25)
-        Me.btnAgregarlibreria.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnAgregarlibreria.Name = "btnAgregarlibreria"
-        Me.btnAgregarlibreria.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(8)
-        Me.btnAgregarlibreria.Size = New System.Drawing.Size(123, 63)
-        Me.btnAgregarlibreria.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btnAgregarlibreria.TabIndex = 245
-        Me.btnAgregarlibreria.Text = "Agregar"
-        '
-        'tblibreria
-        '
-        '
-        '
-        '
-        Me.tblibreria.Border.Class = "TextBoxBorder"
-        Me.tblibreria.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tblibreria.Font = New System.Drawing.Font("Open Sans Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tblibreria.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tblibreria.Location = New System.Drawing.Point(107, 29)
-        Me.tblibreria.Margin = New System.Windows.Forms.Padding(4)
-        Me.tblibreria.Name = "tblibreria"
-        Me.tblibreria.PreventEnterBeep = True
-        Me.tblibreria.Size = New System.Drawing.Size(221, 28)
-        Me.tblibreria.TabIndex = 241
-        '
-        'lblibreria
-        '
-        Me.lblibreria.AutoSize = True
-        Me.lblibreria.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lblibreria.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lblibreria.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblibreria.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lblibreria.Location = New System.Drawing.Point(6, 31)
-        Me.lblibreria.Margin = New System.Windows.Forms.Padding(4)
-        Me.lblibreria.Name = "lblibreria"
-        Me.lblibreria.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lblibreria.Size = New System.Drawing.Size(101, 20)
-        Me.lblibreria.TabIndex = 244
-        Me.lblibreria.Text = "Descripción:"
-        '
         'F0_Libreria
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -555,13 +546,13 @@ Partial Class F0_Libreria
         Me.GroupPanel3.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
         CType(Me.cbCategoria, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbPrograma, System.ComponentModel.ISupportInitialize).EndInit()
         Me.msModulos.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

@@ -310,7 +310,7 @@ Public Class ModeloF1
 
 #Region "EVENTOS"
     Private Sub ModeloHor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
-        If (gs_mayusuculas <> 0) Then
+        If (gs_mayusuculas = 0) Then
             e.KeyChar = e.KeyChar.ToString.ToUpper
         End If
         If (e.KeyChar = ChrW(Keys.Enter)) Then
@@ -383,4 +383,6 @@ Public Class ModeloF1
         _PMUltimoRegistro()
     End Sub
 #End Region
+
+
 End Class

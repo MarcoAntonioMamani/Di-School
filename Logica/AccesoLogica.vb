@@ -363,28 +363,7 @@ Public Class AccesoLogica
 #End Region
 
 #Region "TY005 PRODUCTOS"
-    Public Shared Function L_prLibreriaGrabar(ByRef _numi As String, _cod1 As String, _cod2 As String, _desc1 As String, _desc2 As String) As Boolean
-        Dim _Error As Boolean
 
-        Dim _Tabla As DataTable
-        Dim _listParam As New List(Of Datos.DParametro)
-
-        _listParam.Add(New Datos.DParametro("@tipo", 5))
-        _listParam.Add(New Datos.DParametro("@ylcod1", _cod1))
-        _listParam.Add(New Datos.DParametro("@ylcod2", _cod2))
-        _listParam.Add(New Datos.DParametro("@desc", _desc1))
-        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
-
-        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
-
-        If _Tabla.Rows.Count > 0 Then
-            _numi = _Tabla.Rows(0).Item(0)
-            _Error = False
-        Else
-            _Error = True
-        End If
-        Return Not _Error
-    End Function
 
     Public Shared Function L_fnEliminarProducto(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
@@ -539,11 +518,11 @@ Public Class AccesoLogica
 
         Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
         _listParam.Add(New Datos.DParametro("@ylcod1", cod1))
         _listParam.Add(New Datos.DParametro("@ylcod2", cod2))
-        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
 
         Return _Tabla
     End Function
@@ -593,6 +572,290 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+#End Region
+
+#Region "Titulare-School"
+    Public Shared Function L_prLibreriaGrabar(ByRef _numi As String, _cod1 As String, _cod2 As String, _desc1 As String, _desc2 As String) As Boolean
+        Dim _Error As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@ylcod1", _cod1))
+        _listParam.Add(New Datos.DParametro("@ylcod2", _cod2))
+        _listParam.Add(New Datos.DParametro("@desc", _desc1))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _numi = _Tabla.Rows(0).Item(0)
+            _Error = False
+        Else
+            _Error = True
+        End If
+        Return Not _Error
+    End Function
+    Public Shared Function L_fnGeneralTitular() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnDetalleTelefonoTitular(numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tinumi", numi))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnEliminarTitular(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
+        Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@tinumi", numi))
+            _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+            _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
+
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+            'Else
+            '    _resultado = False
+            'End If
+            Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarTitular(ByRef _tinumi As String, _titipdoc As String,
+                                              _tinrodoc As String, _tinombre As String,
+                                              _tiapellido_p As String, _tiapellido_m As String, _tidirecc As String,
+                                              _tiemail As String, _tifnac As String, _tiest As Integer, _dt As DataTable
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '        @tinumi int=-1,@titipdoc int=-1,
+        '@tinrodoc nvarchar(15)='',@tinombre nvarchar(60)='',@tiapellido_p nvarchar(50)='',@tiapellido_m nvarchar(50)='',@tidirecc nvarchar(150)='',
+        '@tiemail nvarchar(150)='',@tifnac date=null,@tiest int=-1,@ylcod1 int=-1,@ylcod2 int =-1,@desc nvarchar(80)='',@cnuact nvarchar(10)='',@TIT0011 TIT0011Type ReadOnly
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@tinumi", _tinumi))
+        _listParam.Add(New Datos.DParametro("@titipdoc", _titipdoc))
+        _listParam.Add(New Datos.DParametro("@tinrodoc", _tinrodoc))
+        _listParam.Add(New Datos.DParametro("@tinombre", _tinombre))
+        _listParam.Add(New Datos.DParametro("@tiapellido_p", _tiapellido_p))
+        _listParam.Add(New Datos.DParametro("@tiapellido_m", _tiapellido_m))
+        _listParam.Add(New Datos.DParametro("@tidirecc", _tidirecc))
+        _listParam.Add(New Datos.DParametro("@tiemail", _tiemail))
+        _listParam.Add(New Datos.DParametro("@tifnac", _tifnac))
+        _listParam.Add(New Datos.DParametro("@tiest", _tiest))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TIT0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _tinumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarTitular(ByRef _tinumi As String, _titipdoc As String,
+                                              _tinrodoc As String, _tinombre As String,
+                                              _tiapellido_p As String, _tiapellido_m As String, _tidirecc As String,
+                                              _tiemail As String, _tifnac As String, _tiest As Integer, _dt As DataTable
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '        @tinumi int=-1,@titipdoc int=-1,
+        '@tinrodoc nvarchar(15)='',@tinombre nvarchar(60)='',@tiapellido_p nvarchar(50)='',@tiapellido_m nvarchar(50)='',@tidirecc nvarchar(150)='',
+        '@tiemail nvarchar(150)='',@tifnac date=null,@tiest int=-1,@ylcod1 int=-1,@ylcod2 int =-1,@desc nvarchar(80)='',@cnuact nvarchar(10)='',@TIT0011 TIT0011Type ReadOnly
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@tinumi", _tinumi))
+        _listParam.Add(New Datos.DParametro("@titipdoc", _titipdoc))
+        _listParam.Add(New Datos.DParametro("@tinrodoc", _tinrodoc))
+        _listParam.Add(New Datos.DParametro("@tinombre", _tinombre))
+        _listParam.Add(New Datos.DParametro("@tiapellido_p", _tiapellido_p))
+        _listParam.Add(New Datos.DParametro("@tiapellido_m", _tiapellido_m))
+        _listParam.Add(New Datos.DParametro("@tidirecc", _tidirecc))
+        _listParam.Add(New Datos.DParametro("@tiemail", _tiemail))
+        _listParam.Add(New Datos.DParametro("@tifnac", _tifnac))
+        _listParam.Add(New Datos.DParametro("@tiest", _tiest))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TIT0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_TIT001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _tinumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+#End Region
+
+
+#Region "Alumno-School"
+
+    Public Shared Function L_fnGeneralAlumno() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnMostrarTitulares() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnDetalleTitularAlumno(numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@alnumi", numi))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnEliminarAlumno(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@alnumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        'Else
+        '    _resultado = False
+        'End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarAlumno(ByRef _alnumi As String, _altipdoc As String,
+                                              _alnrodoc As String, _alrude As String, _alnombre As String,
+                                              _alapellido_p As String, _alapellido_m As String, _altelf As String, _aldirecc As String,
+                                              _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '   @alnumi ,@altipdoc ,@alnrodoc ,@alrude ,@alnombre ,@alapellido_p ,@alapellido_m ,@altelf ,
+        '@aldirecc ,@alemail ,@alfnac ,@alestado ,@newFecha,@newHora,@cnuact
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@alnumi", _alnumi))
+        _listParam.Add(New Datos.DParametro("@altipdoc", _altipdoc))
+        _listParam.Add(New Datos.DParametro("@alnrodoc", _alnrodoc))
+        _listParam.Add(New Datos.DParametro("@alrude", _alrude))
+        _listParam.Add(New Datos.DParametro("@alnombre", _alnombre))
+        _listParam.Add(New Datos.DParametro("@alapellido_p", _alapellido_p))
+        _listParam.Add(New Datos.DParametro("@alapellido_m", _alapellido_m))
+        _listParam.Add(New Datos.DParametro("@altelf", _altelf))
+        _listParam.Add(New Datos.DParametro("@aldirecc", _aldirecc))
+        _listParam.Add(New Datos.DParametro("@alemail", _alemail))
+        _listParam.Add(New Datos.DParametro("@alfnac", _alfnac))
+        _listParam.Add(New Datos.DParametro("@alestado", _alestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@AL0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _alnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarAlumno(ByRef _alnumi As String, _altipdoc As String,
+                                              _alnrodoc As String, _alrude As String, _alnombre As String,
+                                              _alapellido_p As String, _alapellido_m As String, _altelf As String, _aldirecc As String,
+                                              _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '   @alnumi ,@altipdoc ,@alnrodoc ,@alrude ,@alnombre ,@alapellido_p ,@alapellido_m ,@altelf ,
+        '@aldirecc ,@alemail ,@alfnac ,@alestado ,@newFecha,@newHora,@cnuact
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@alnumi", _alnumi))
+        _listParam.Add(New Datos.DParametro("@altipdoc", _altipdoc))
+        _listParam.Add(New Datos.DParametro("@alnrodoc", _alnrodoc))
+        _listParam.Add(New Datos.DParametro("@alrude", _alrude))
+        _listParam.Add(New Datos.DParametro("@alnombre", _alnombre))
+        _listParam.Add(New Datos.DParametro("@alapellido_p", _alapellido_p))
+        _listParam.Add(New Datos.DParametro("@alapellido_m", _alapellido_m))
+        _listParam.Add(New Datos.DParametro("@altelf", _altelf))
+        _listParam.Add(New Datos.DParametro("@aldirecc", _aldirecc))
+        _listParam.Add(New Datos.DParametro("@alemail", _alemail))
+        _listParam.Add(New Datos.DParametro("@alfnac", _alfnac))
+        _listParam.Add(New Datos.DParametro("@alestado", _alestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@AL0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _alnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+
 #End Region
 
 #Region "TY004 CLIENTES"

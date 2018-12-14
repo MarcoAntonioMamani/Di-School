@@ -113,11 +113,6 @@ Public Class P_Principal
         Dim listaTabs As New List(Of DevComponents.DotNetBar.Metro.MetroTilePanel)
         listaTabs.Add(MetroTilePanel1)
         listaTabs.Add(MetroTilePanel2)
-        listaTabs.Add(MetroTilePanel6)
-        listaTabs.Add(MetroTilePanel7)
-        listaTabs.Add(MetroTilePanelVentas)
-        listaTabs.Add(MenuCreditos)
-
 
         Dim idRolUsu As String = gi_userRol
 
@@ -240,15 +235,10 @@ Public Class P_Principal
     Private Sub btConfRoles_Click(sender As Object, e As EventArgs) Handles btConfRoles.Click
         SideNav1.IsMenuExpanded = False
         Ventana.Select()
-        'Dim frm As New F0_Roles
         Dim frm As New F1_Rol
         frm._nameButton = btConfRoles.Name
         frm._modulo = FP_Configuracion
         Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
-        tab3.RecalcSize()
-        tab3.ThemeAware = True
-        tab3.ShowSubItems = True
-        tab3.UpdateBindings()
         frm._tab = tab3
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
         superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
@@ -256,6 +246,8 @@ Public Class P_Principal
         frm.Show()
         tab3.Text = frm.Text
         tab3.Icon = frm.Icon
+
+
     End Sub
 
     Private Sub btConfUsuarios_Click(sender As Object, e As EventArgs) Handles btConfUsuarios.Click
@@ -301,82 +293,11 @@ Public Class P_Principal
     End Sub
 
     Private Sub btConfFabrica_Click(sender As Object, e As EventArgs) Handles btConfCliente.Click
-        'SideNav1.IsMenuExpanded = False
-        'Ventana.Select()
-        'Dim frm As New F1_Clientes
-        'frm._Tipo = 1
-        'frm._nameButton = btConfCliente.Name
-        'frm._modulo = FP_Configuracion
-        'Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
-        'frm._tab = tab3
-        'Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-        'superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
-        'tab3.AttachedControl.Controls.Add(panel)
-        'frm.Show()
-        'tab3.Text = frm.Text
-        'tab3.Icon = frm.Icon
 
-    End Sub
-
-    Private Sub btConfTipoEquipo_Click(sender As Object, e As EventArgs) Handles btConfProducto.Click
-
-    End Sub
-
-    Private Sub btConfPrecio_Click(sender As Object, e As EventArgs) Handles btConfPrecio.Click
-
-    End Sub
-
-    Private Sub btCatCatalogo_Click(sender As Object, e As EventArgs) Handles btZonas.Click
-
-    End Sub
-
-
-
-    Private Sub MetroTileItem12_Click(sender As Object, e As EventArgs) Handles btInvDeposito.Click
-
-    End Sub
-
-    Private Sub btInvAmacen_Click(sender As Object, e As EventArgs) Handles btInvAmacen.Click
-
-    End Sub
-
-    Private Sub btComProveedor_Click(sender As Object, e As EventArgs) Handles btComProveedor.Click
-
-    End Sub
-
-    Private Sub btComCompra_Click(sender As Object, e As EventArgs) Handles btComCompra.Click
-
-
-    End Sub
-
-    Private Sub btInvVentas_Click(sender As Object, e As EventArgs) Handles btInvVentas.Click
-
-    End Sub
-
- 
-
-    Private Sub btConfDosificacion_Click(sender As Object, e As EventArgs) Handles btConfDosificacion.Click
-
-    End Sub
-
-
-    Private Sub btInvMovimiento_Click(sender As Object, e As EventArgs) Handles btInvMovimiento.Click
-
-    End Sub
-
-    Private Sub superTabControl3_TabItemClose(sender As Object, e As SuperTabStripTabItemCloseEventArgs) Handles superTabControl3.TabItemClose
-        Dim cantidad As Integer = superTabControl3.Tabs.Count
-        If cantidad = 1 Then
-            FP_Configuracion.Select()
-        End If
-    End Sub
-
-    Private Sub MetroTileItem16_Click(sender As Object, e As EventArgs) Handles btInvKardex.Click
-        SideNav1.IsMenuExpanded = False
+        Dim frm As New F1_Alumno
         Ventana.Select()
-        Dim frm As New F0_KardexMovimiento
-        frm._nameButton = btInvKardex.Name
-        frm._modulo = FP_INVENTARIO
+        frm._modulo = FP_Configuracion
+        frm._nameButton = btConfCliente.Name
         Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
         frm._tab = tab3
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
@@ -387,78 +308,47 @@ Public Class P_Principal
         Dim blah As New Bitmap(New Bitmap(My.Resources.movimiento), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         tab3.Icon = ico
-    End Sub
-
-    Private Sub btInvSaldo_Click(sender As Object, e As EventArgs) Handles btInvSaldo.Click
-
 
     End Sub
 
-    Private Sub btVentReporteAtendidas_Click(sender As Object, e As EventArgs) Handles btVentReporteAtendidas.Click
+    Private Sub btConfTipoEquipo_Click(sender As Object, e As EventArgs) Handles btConfProducto.Click
+        SideNav1.IsMenuExpanded = False
 
-    End Sub
+        SideNav1.IsMenuExpanded = False
+        Ventana.Select()
+        Dim frm As New F1_Titulares
+        frm._nameButton = btConfProducto.Name
+        frm._modulo = FP_Configuracion
+        Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        frm._tab = tab3
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+        tab3.Icon = frm.Icon
 
-    Private Sub btVentReporteVentaVsCosto_Click(sender As Object, e As EventArgs) Handles btVentReporteVentaVsCosto.Click
-
-    End Sub
-
-    Private Sub btZonaMapaCliente_Click(sender As Object, e As EventArgs) Handles btZonaMapaCliente.Click
-
-    End Sub
-
-    
-
-    Private Sub btHojaRuta_Click(sender As Object, e As EventArgs) Handles btZonaReporteRuta.Click
-
-    End Sub
-
-    Private Sub btInvKardexReporte_Click(sender As Object, e As EventArgs) Handles btInvKardexReporte.Click
-
-    End Sub
-
-    Private Sub btVentReporteProducto_Click(sender As Object, e As EventArgs) Handles btVentReporteProducto.Click
-
-    End Sub
-
-    Private Sub MetroTileItem11_Click(sender As Object, e As EventArgs) Handles btnCredPago.Click
 
 
     End Sub
 
-   
-    Private Sub btnCredEstCuenta_Click(sender As Object, e As EventArgs) Handles btnCredEstCuenta.Click
 
+
+    Private Sub superTabControl3_TabItemClose(sender As Object, e As SuperTabStripTabItemCloseEventArgs) Handles superTabControl3.TabItemClose
+        Dim cantidad As Integer = superTabControl3.Tabs.Count
+        If cantidad = 1 Then
+            FP_Configuracion.Select()
+        End If
     End Sub
 
-    Private Sub btInvUtilidad_Click(sender As Object, e As EventArgs) Handles btInvUtilidad.Click
 
-    End Sub
 
-    Private Sub MetroTileItem13_Click(sender As Object, e As EventArgs) Handles btnCredInfMorosidad.Click
 
-    End Sub
-
-    Private Sub btComPagosCredito_Click(sender As Object, e As EventArgs) Handles btComPagosCredito.Click
-
-    End Sub
-
-    Private Sub MetroTileItem11_Click_1(sender As Object, e As EventArgs) Handles btInvSaldoLote.Click
-
-    End Sub
-
-    Private Sub btVentProforma_Click(sender As Object, e As EventArgs) Handles btVentProforma.Click
-
-    End Sub
-
-    Private Sub btVentGrafica_Click(sender As Object, e As EventArgs) Handles btVentGrafica.Click
-
-    End Sub
-
-    Private Sub MetroTileItem11_Click_2(sender As Object, e As EventArgs) Handles btVentRotProd.Click
+    Private Sub MetroTileItem11_Click_2(sender As Object, e As EventArgs)
         SideNav1.IsMenuExpanded = False
         Ventana.Select()
         Dim frm As New F0_RotacionProductos
-        frm._nameButton = btVentRotProd.Name
+        'frm._nameButton = btVentRotProd.Name
         Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
         frm._tab = tab3
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
@@ -469,73 +359,30 @@ Public Class P_Principal
         Dim blah As New Bitmap(New Bitmap(My.Resources.rotacionproducto), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         tab3.Icon = ico
-    End Sub
-
-    Private Sub btComVendedor_Click_1(sender As Object, e As EventArgs) Handles btComVendedor.Click
 
     End Sub
 
-    Private Sub btVentEstad_Click(sender As Object, e As EventArgs) Handles btVentEstad.Click
 
-    End Sub
-
-    Private Sub btVentFactura_Click(sender As Object, e As EventArgs) Handles btVentFactura.Click
-
-    End Sub
 
     Private Sub btConfAccesorio_Click(sender As Object, e As EventArgs) Handles btConfLibreria.Click
 
-    End Sub
-
-    Private Sub FP_INVENTARIO_Click(sender As Object, e As EventArgs) Handles FP_INVENTARIO.Click
-
-    End Sub
-
-    Private Sub btlvSaldoMinimo_Click(sender As Object, e As EventArgs) Handles btlvSaldoMinimo.Click
-
-    End Sub
-
-    Private Sub btnCredPagoCliente_Click(sender As Object, e As EventArgs) Handles btnCredPagoCliente.Click
-
-    End Sub
-
-    Private Sub btnCredPagoClienteVendedor_Click(sender As Object, e As EventArgs) Handles btnCredPagoClienteVendedor.Click
-
-    End Sub
-
-    Private Sub FP_VENTAS_Click(sender As Object, e As EventArgs) Handles FP_VENTAS.Click
+        SideNav1.IsMenuExpanded = False
+        Ventana.Select()
+        Dim frm As New F0_Libreria
+        frm._nameButton = btConfLibreria.Name
+        frm._modulo = FP_Configuracion
+        Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        frm._tab = tab3
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+        Dim blah As New Bitmap(New Bitmap(My.Resources.check_mark), 20, 20)
+        Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
+        tab3.Icon = ico
 
     End Sub
 
-    'Private Sub btnCredPagoCliente_Click(sender As Object, e As EventArgs) Handles btnCredPagoCliente.Click
-    '    SideNav1.IsMenuExpanded = False
-    '    Ventana.Select()
-    '    Dim frm As New F0_Cobrar_Cliente
-    '    frm._nameButton = btInvMovimiento.Name
-    '    frm._modulo = FP_CREDITOS
-    '    Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
-    '    frm._tab = tab3
-    '    Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-    '    superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
-    '    tab3.AttachedControl.Controls.Add(panel)
-    '    frm.Show()
-    '    tab3.Text = frm.Text
-    '    tab3.Icon = frm.Icon
-    'End Sub
 
-    'Private Sub btnCredPagoClienteVendedor_Click(sender As Object, e As EventArgs) Handles btnCredPagoClienteVendedor.Click
-    '    SideNav1.IsMenuExpanded = False
-    '    Ventana.Select()
-    '    Dim frm As New F0_Cobrar_Vendedor
-    '    frm._nameButton = btInvMovimiento.Name
-    '    frm._modulo = FP_CREDITOS
-    '    Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
-    '    frm._tab = tab3
-    '    Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-    '    superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
-    '    tab3.AttachedControl.Controls.Add(panel)
-    '    frm.Show()
-    '    tab3.Text = frm.Text
-    '    tab3.Icon = frm.Icon
-    'End Sub
 End Class

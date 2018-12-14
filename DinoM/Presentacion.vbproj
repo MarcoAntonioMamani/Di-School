@@ -167,6 +167,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABM School\F1_Alumno.Designer.vb">
+      <DependentUpon>F1_Alumno.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM School\F1_Alumno.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM School\F1_Titulares.Designer.vb">
+      <DependentUpon>F1_Titulares.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM School\F1_Titulares.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Control\Imageus.Designer.vb">
       <DependentUpon>Imageus.vb</DependentUpon>
     </Compile>
@@ -279,6 +291,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ABM School\F1_Alumno.resx">
+      <DependentUpon>F1_Alumno.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM School\F1_Titulares.resx">
+      <DependentUpon>F1_Titulares.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Imageus.resx">
       <DependentUpon>Imageus.vb</DependentUpon>
     </EmbeddedResource>
@@ -619,6 +637,8 @@
     <None Include="Resources\trash.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\profesore_icono.png" />
+    <None Include="Resources\teachers_icono.png" />
     <None Include="Resources\pie-chart1.png" />
     <None Include="Resources\pie-chart.png" />
     <None Include="Resources\mensaje.png" />
@@ -633,6 +653,7 @@
     <Content Include="Resources\check-mark.png" />
     <None Include="Resources\cobro.png" />
     <None Include="Resources\creditopagos.png" />
+    <None Include="Resources\cursos.png" />
     <Content Include="Resources\dinases.png" />
     <None Include="Resources\MapaClientes.png" />
     <None Include="Resources\ventasCostos.png" />
@@ -643,6 +664,13 @@
     <None Include="Resources\grafica.png" />
     <None Include="Resources\estadistico.png" />
     <None Include="Resources\facturacion.png" />
+    <None Include="Resources\fondo_colegio.jpg" />
+    <None Include="Resources\icono_estduiante.png" />
+    <None Include="Resources\estudiante_icono.png" />
+    <None Include="Resources\inscripcion.png" />
+    <None Include="Resources\icono2.png" />
+    <None Include="Resources\Logo.jpg" />
+    <None Include="Resources\icono.png" />
     <Content Include="Resources\man.png" />
     <None Include="Resources\pdf.png" />
     <None Include="Resources\txt.png" />
