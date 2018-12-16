@@ -17,7 +17,7 @@ Public Class F1_Titulares
 #End Region
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
-        Me.Text = "TITULARES"
+
         L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prMaxLength()
         _prCargarComboLibreria(cbtipodoc, 5, 2)

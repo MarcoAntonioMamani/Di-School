@@ -30,7 +30,7 @@ Public Class F1_Alumno
 #End Region
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
-        Me.Text = "Alumno"
+
         _prInicarMapa()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prMaxLength()

@@ -173,6 +173,12 @@
     <Compile Include="ABM School\F1_Alumno.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM School\F1_MapaCLientes.designer.vb">
+      <DependentUpon>F1_MapaCLientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM School\F1_MapaCLientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM School\F1_Profesor.Designer.vb">
       <DependentUpon>F1_Profesor.vb</DependentUpon>
     </Compile>
@@ -299,6 +305,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ABM School\F1_Alumno.resx">
       <DependentUpon>F1_Alumno.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM School\F1_MapaCLientes.resx">
+      <DependentUpon>F1_MapaCLientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM School\F1_Profesor.resx">
       <DependentUpon>F1_Profesor.vb</DependentUpon>

@@ -896,7 +896,8 @@ Partial Class F1_Titulares
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1395, 953)
         Me.Name = "F1_Titulares"
-        Me.Text = "F1_Titulares"
+        Me.Text = "TITULARES"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabPrincipal.ResumeLayout(False)

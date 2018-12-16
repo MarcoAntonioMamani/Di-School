@@ -728,7 +728,8 @@ Partial Class F1_Profesor
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1282, 953)
         Me.Name = "F1_Profesor"
-        Me.Text = "F1_Profesor"
+        Me.Text = "PROFESOR"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabPrincipal.ResumeLayout(False)
