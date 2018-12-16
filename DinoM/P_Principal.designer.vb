@@ -33,6 +33,7 @@ Partial Class P_Principal
         Me.btConfProducto = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfPrecio = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfLibreria = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btConfMateria = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfDosificacion = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.SideNav_Logistica = New DevComponents.DotNetBar.Controls.SideNavPanel()
@@ -98,7 +99,6 @@ Partial Class P_Principal
         Me.btAbout = New DevComponents.DotNetBar.RadialMenuItem()
         Me.lbUsuario = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.MetroTileItem11 = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.MetroTileItem12 = New DevComponents.DotNetBar.Metro.MetroTileItem()
         MetroTileFrame1 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         MetroTileFrame2 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         Me.SideNav1.SuspendLayout()
@@ -185,7 +185,7 @@ Partial Class P_Principal
         Me.MetroTilePanel1.DragDropSupport = True
         Me.MetroTilePanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MetroTilePanel1.ForeColor = System.Drawing.Color.White
-        Me.MetroTilePanel1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btConfRoles, Me.btConfUsuarios, Me.btConfCliente, Me.btConfProducto, Me.btConfPrecio, Me.btConfLibreria, Me.MetroTileItem12, Me.btConfDosificacion})
+        Me.MetroTilePanel1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btConfRoles, Me.btConfUsuarios, Me.btConfLibreria, Me.btConfCliente, Me.btConfPrecio, Me.btConfProducto, Me.btConfMateria, Me.btConfDosificacion})
         Me.MetroTilePanel1.ItemSpacing = 10
         Me.MetroTilePanel1.Location = New System.Drawing.Point(0, 0)
         Me.MetroTilePanel1.Margin = New System.Windows.Forms.Padding(4)
@@ -299,6 +299,22 @@ Partial Class P_Principal
         Me.btConfLibreria.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btConfLibreria.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btConfLibreria.TitleText = "LIBRERIA"
+        '
+        'btConfMateria
+        '
+        Me.btConfMateria.Image = Global.DinoM.My.Resources.Resources._14
+        Me.btConfMateria.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btConfMateria.Name = "btConfMateria"
+        Me.btConfMateria.SymbolColor = System.Drawing.Color.Empty
+        Me.btConfMateria.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
+        Me.btConfMateria.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btConfMateria.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(159, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btConfMateria.TileStyle.BackColor2 = System.Drawing.Color.OrangeRed
+        Me.btConfMateria.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btConfMateria.TitleText = "MATERIA"
         '
         'btConfDosificacion
         '
@@ -1249,22 +1265,6 @@ Partial Class P_Principal
         Me.MetroTileItem11.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MetroTileItem11.TitleText = "USUARIOS"
         '
-        'MetroTileItem12
-        '
-        Me.MetroTileItem12.Image = Global.DinoM.My.Resources.Resources.check_mark
-        Me.MetroTileItem12.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.MetroTileItem12.Name = "MetroTileItem12"
-        Me.MetroTileItem12.SymbolColor = System.Drawing.Color.Empty
-        Me.MetroTileItem12.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
-        Me.MetroTileItem12.TileSize = New System.Drawing.Size(250, 135)
-        '
-        '
-        '
-        Me.MetroTileItem12.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(159, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.MetroTileItem12.TileStyle.BackColor2 = System.Drawing.Color.OrangeRed
-        Me.MetroTileItem12.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.MetroTileItem12.TitleText = "MATERIA"
-        '
         'P_Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1368,5 +1368,5 @@ Partial Class P_Principal
     Friend WithEvents MetroTileItem10 As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btConfDosificacion As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents MetroTileItem11 As DevComponents.DotNetBar.Metro.MetroTileItem
-    Friend WithEvents MetroTileItem12 As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btConfMateria As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

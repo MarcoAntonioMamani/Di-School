@@ -829,6 +829,96 @@ Public Class AccesoLogica
     End Function
 
 #End Region
+
+
+#Region "MATERIA"
+
+    Public Shared Function L_fnGeneralMateria() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_MA001", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+    Public Shared Function L_fnEliminarMateria(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@manumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("SP_MAM_MA001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        'Else
+        '    _resultado = False
+        'End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarMateria(ByRef _manumi As String, _manombre As String, _madescripcion As String, _maespecial As Integer, _maestado As Integer) As Boolean
+        Dim _resultado As Boolean
+        '@manumi ,@manombre  ,@madescripcion ,@maespecial  ,@maestado
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@manumi", _manumi))
+        _listParam.Add(New Datos.DParametro("@manombre", _manombre))
+        _listParam.Add(New Datos.DParametro("@madescripcion", _madescripcion))
+        _listParam.Add(New Datos.DParametro("@maespecial", _maespecial))
+        _listParam.Add(New Datos.DParametro("@maestado", _maestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_MA001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _manumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarMateria(ByRef _manumi As String, _manombre As String, _madescripcion As String, _maespecial As Integer, _maestado As Integer) As Boolean
+        Dim _resultado As Boolean
+        '@manumi ,@manombre  ,@madescripcion ,@maespecial  ,@maestado
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@manumi", _manumi))
+        _listParam.Add(New Datos.DParametro("@manombre", _manombre))
+        _listParam.Add(New Datos.DParametro("@madescripcion", _madescripcion))
+        _listParam.Add(New Datos.DParametro("@maespecial", _maespecial))
+        _listParam.Add(New Datos.DParametro("@maestado", _maestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_MA001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _manumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+#End Region
 #Region "Alumno-School"
 
     Public Shared Function L_fnGeneralAlumno() As DataTable
