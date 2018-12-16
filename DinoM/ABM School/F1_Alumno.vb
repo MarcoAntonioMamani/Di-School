@@ -2,10 +2,21 @@
 Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
 Imports System.IO
+Imports GMap.NET.MapProviders
+Imports GMap.NET
+Imports GMap.NET.WindowsForms.Markers
+Imports GMap.NET.WindowsForms
+Imports GMap.NET.WindowsForms.ToolTips
 Imports DevComponents.DotNetBar.SuperGrid
 Imports DevComponents.DotNetBar.Controls
 Public Class F1_Alumno
-
+#Region "MApas"
+    Dim _Punto As Integer
+    Dim _ListPuntos As List(Of PointLatLng)
+    Dim _Overlay As GMapOverlay
+    Dim _latitud As Double = 0
+    Dim _longitud As Double = 0
+#End Region
 #Region "Variables Locales"
     Dim RutaGlobal As String = gs_CarpetaRaiz
     Dim RutaTemporal As String = "C:\Temporal"
@@ -20,6 +31,7 @@ Public Class F1_Alumno
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
         Me.Text = "Alumno"
+        _prInicarMapa()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prMaxLength()
         _prCargarComboLibreria(cbtipodoc, 5, 2)
@@ -32,6 +44,103 @@ Public Class F1_Alumno
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         Me.Icon = ico
 
+    End Sub
+    Public Sub _prInicarMapa()
+        _Punto = 0
+        '_ListPuntos = New List(Of PointLatLng)
+        _Overlay = New GMapOverlay("points")
+        Gmc_Cliente.Overlays.Add(_Overlay)
+        P_IniciarMap()
+    End Sub
+    Private Sub P_IniciarMap()
+        Gmc_Cliente.DragButton = MouseButtons.Left
+        Gmc_Cliente.CanDragMap = True
+        Gmc_Cliente.MapProvider = GMapProviders.GoogleMap
+        If (_latitud <> 0 And _longitud <> 0) Then
+
+            Gmc_Cliente.Position = New PointLatLng(_latitud, _longitud)
+        Else
+
+            _Overlay.Markers.Clear()
+            Gmc_Cliente.Position = New PointLatLng(-17.3931784, -66.1738852)
+        End If
+
+        Gmc_Cliente.MinZoom = 0
+        Gmc_Cliente.MaxZoom = 24
+        Gmc_Cliente.Zoom = 15.5
+        Gmc_Cliente.AutoScroll = True
+
+        GMapProvider.Language = LanguageType.Spanish
+    End Sub
+
+    Private Function _fnCopiarImagenRutaDefinida() As String
+        'copio la imagen en la carpeta del sistema
+
+        Dim file As New OpenFileDialog()
+        file.Filter = "Ficheros JPG o JPEG o PNG|*.jpg;*.jpeg;*.png" &
+                      "|Ficheros GIF|*.gif" &
+                      "|Ficheros BMP|*.bmp" &
+                      "|Ficheros PNG|*.png" &
+                      "|Ficheros TIFF|*.tif"
+        If file.ShowDialog() = DialogResult.OK Then
+            Dim ruta As String = file.FileName
+
+
+            If file.CheckFileExists = True Then
+                Dim img As New Bitmap(New Bitmap(ruta))
+                Dim imgM As New Bitmap(New Bitmap(ruta))
+                Dim Bin As New MemoryStream
+                imgM.Save(Bin, System.Drawing.Imaging.ImageFormat.Jpeg)
+                Dim a As Object = file.GetType.ToString
+                If (_fnActionNuevo()) Then
+
+                    Dim mayor As Integer
+                    mayor = JGrM_Buscador.GetTotal(JGrM_Buscador.RootTable.Columns("alnumi"), AggregateFunction.Max)
+                    nameImg = "\Imagen_" + Str(mayor + 1).Trim + ".jpg"
+                    UsImg.pbImage.SizeMode = PictureBoxSizeMode.StretchImage
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+
+                    img.Save(RutaTemporal + nameImg, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    img.Dispose()
+                Else
+
+                    nameImg = "\Imagen_" + Str(tbCodigo.Text).Trim + ".jpg"
+
+
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+                    img.Save(RutaTemporal + nameImg, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    Modificado = True
+                    img.Dispose()
+
+                End If
+            End If
+
+            Return nameImg
+        End If
+
+        Return "default.jpg"
+    End Function
+
+    Private Sub _fnMoverImagenRuta(Folder As String, name As String)
+        'copio la imagen en la carpeta del sistema
+        If (Not name.Equals("Default.jpg") And File.Exists(RutaTemporal + name)) Then
+
+            Dim img As New Bitmap(New Bitmap(RutaTemporal + name), 500, 300)
+
+            UsImg.pbImage.Image.Dispose()
+            UsImg.pbImage.Image = Nothing
+            Try
+                My.Computer.FileSystem.CopyFile(RutaTemporal + name,
+     Folder + name, overwrite:=True)
+
+            Catch ex As System.IO.IOException
+
+
+            End Try
+
+
+
+        End If
     End Sub
 
     Private Sub _prCargarDetalleTelefono(_numi As String)
@@ -260,17 +369,17 @@ Public Class F1_Alumno
     End Sub
 
     Private Sub _prCrearCarpetaReportes()
-        Dim rutaDestino As String = RutaGlobal + "\Reporte\Reporte Productos\"
+        Dim rutaDestino As String = RutaGlobal + "\Reporte\Reporte Alumno\"
 
-        If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Productos\") = False Then
+        If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Alumno\") = False Then
             If System.IO.Directory.Exists(RutaGlobal + "\Reporte") = False Then
                 System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte")
-                If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Productos") = False Then
-                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte\Reporte Productos")
+                If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Alumno") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte\Reporte Alumno")
                 End If
             Else
                 If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Productos") = False Then
-                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte\Reporte Productos")
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte\Reporte Alumno")
 
                 End If
             End If
@@ -308,6 +417,8 @@ Public Class F1_Alumno
 
         grdetalle_telefono.RootTable.Columns("img").Visible = True
         btnImprimir.Visible = False
+        _prCrearCarpetaImagenes()
+        _prCrearCarpetaTemporal()
     End Sub
 
     Public Overrides Sub _PMOInhabilitar()
@@ -348,6 +459,10 @@ Public Class F1_Alumno
         tbtitular.Clear()
         tbnrodoc.Clear()
         tbemail.Clear()
+        tbrude.Clear()
+
+        tbtelefono.Clear()
+
         tbdireccion.Clear()
         tbFechaNac.Value = Now.Date
         swEstado.Value = True
@@ -361,6 +476,10 @@ Public Class F1_Alumno
         If (CType(cbparentesco.DataSource, DataTable).Rows.Count > 0) Then
             cbparentesco.SelectedIndex = 0
         End If
+        UsImg.pbImage.Image = My.Resources.pantalla
+        _Overlay.Markers.Clear()
+        _latitud = 0
+        _longitud = 0
     End Sub
     Public Sub _prSeleccionarCombo(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         If (CType(mCombo.DataSource, DataTable).Rows.Count > 0) Then
@@ -386,13 +505,14 @@ Public Class F1_Alumno
         '                                      _tiemail As String, _tifnac As String, _tiest As Integer, _dt As DataTable
         Dim numi As String = ""
 
-        Dim res As Boolean = L_fnGrabarAlumno(tbCodigo.Text, cbtipodoc.Value, tbnrodoc.Text, tbrude.Text, tbnombre.Text, tbapellido_paterno.Text, tbapellido_materno.Text, tbtelefono.Text, tbdireccion.Text, tbemail.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable))
+        Dim res As Boolean = L_fnNuevoAlumno(tbCodigo.Text, cbtipodoc.Value, tbnrodoc.Text, tbrude.Text, tbnombre.Text, tbapellido_paterno.Text, tbapellido_materno.Text, tbtelefono.Text, tbdireccion.Text, tbemail.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), _latitud, _longitud, nameImg)
 
 
         If res Then
             Modificado = False
-            '_fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Alumno", nameImg)
+            _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Alumno", nameImg)
             nameImg = "Default.jpg"
+
 
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Alumno ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
@@ -410,6 +530,20 @@ Public Class F1_Alumno
         Return res
 
     End Function
+    Public Sub _PrEliminarImage()
+
+        If (Not (_fnActionNuevo()) And (File.Exists(RutaGlobal + "\Imagenes\Imagenes Alumno\Imagen_" + tbCodigo.Text + ".jpg"))) Then
+            UsImg.pbImage.Image.Dispose()
+            UsImg.pbImage.Image = Nothing
+            Try
+                My.Computer.FileSystem.DeleteFile(RutaGlobal + "\Imagenes\Imagenes Alumno\Imagen_" + tbCodigo.Text + ".jpg")
+            Catch ex As Exception
+
+            End Try
+
+
+        End If
+    End Sub
 
     Public Overrides Function _PMOModificarRegistro() As Boolean
         Dim res As Boolean
@@ -420,12 +554,23 @@ Public Class F1_Alumno
         '                                      _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable
 
 
-        res = L_fnModificarAlumno(tbCodigo.Text, cbtipodoc.Value, tbnrodoc.Text, tbrude.Text, tbnombre.Text, tbapellido_paterno.Text, tbapellido_materno.Text, tbtelefono.Text, tbdireccion.Text, tbemail.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable))
+        Dim nameImage As String = JGrM_Buscador.GetValue("alimg")
+        If (Modificado = False) Then
+            res = L_fnModificarAlumno(tbCodigo.Text, cbtipodoc.Value, tbnrodoc.Text, tbrude.Text, tbnombre.Text, tbapellido_paterno.Text, tbapellido_materno.Text, tbtelefono.Text, tbdireccion.Text, tbemail.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), _latitud, _longitud, nameImage)
+
+
+        Else
+            res = L_fnModificarAlumno(tbCodigo.Text, cbtipodoc.Value, tbnrodoc.Text, tbrude.Text, tbnombre.Text, tbapellido_paterno.Text, tbapellido_materno.Text, tbtelefono.Text, tbdireccion.Text, tbemail.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), _latitud, _longitud, nameImg)
+
+        End If
+
+
+
 
         If res Then
 
             If (Modificado = True) Then
-                '_fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Alumno", nameImg)
+                _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Alumno", nameImg)
                 Modificado = False
             End If
             nameImg = "Default.jpg"
@@ -471,7 +616,7 @@ Public Class F1_Alumno
             Dim mensajeError As String = ""
             Dim res As Boolean = L_fnEliminarAlumno(tbCodigo.Text, mensajeError)
             If res Then
-
+                _PrEliminarImage()
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
 
@@ -533,6 +678,9 @@ Public Class F1_Alumno
         listEstCeldas.Add(New Modelo.Celda("alhact", False))
         listEstCeldas.Add(New Modelo.Celda("aluact", False))
         listEstCeldas.Add(New Modelo.Celda("alemail", False))
+        listEstCeldas.Add(New Modelo.Celda("allat", False))
+        listEstCeldas.Add(New Modelo.Celda("allongi", False))
+        listEstCeldas.Add(New Modelo.Celda("alimg", False))
 
 
         Return listEstCeldas
@@ -560,6 +708,8 @@ Public Class F1_Alumno
             cbtipodoc.Value = .GetValue("altipdoc")
             tbdireccion.Text = .GetValue("aldirec")
             tbFechaNac.Value = .GetValue("alfnac")
+            _latitud = .GetValue("allat")
+            _longitud = .GetValue("allongi")
             tbnrodoc.Text = .GetValue("alnrodoc")
             swEstado.Value = .GetValue("alestado")
             lbFecha.Text = CType(.GetValue("alfact"), Date).ToString("dd/MM/yyyy")
@@ -567,9 +717,58 @@ Public Class F1_Alumno
             lbUsuario.Text = .GetValue("aluact").ToString
             _prCargarDetalleTelefono(.GetValue("alnumi").ToString)
         End With
+        Dim name As String = JGrM_Buscador.GetValue("alimg")
+        If name.Equals("Default.jpg") Or Not File.Exists(RutaGlobal + "\Imagenes\Imagenes Alumno" + name) Then
 
+            Dim im As New Bitmap(My.Resources.pantalla)
+            UsImg.pbImage.Image = im
+        Else
+            If (File.Exists(RutaGlobal + "\Imagenes\Imagenes Alumno" + name)) Then
+                Dim Bin As New MemoryStream
+                Dim im As New Bitmap(New Bitmap(RutaGlobal + "\Imagenes\Imagenes Alumno" + name))
+                im.Save(Bin, System.Drawing.Imaging.ImageFormat.Jpeg)
+                UsImg.pbImage.SizeMode = PictureBoxSizeMode.StretchImage
+                UsImg.pbImage.Image = Image.FromStream(Bin)
+                Bin.Dispose()
+
+            End If
+        End If
+        Dim nombrecompleto As String = JGrM_Buscador.GetValue("alnombre").ToString + " " + JGrM_Buscador.GetValue("alapellido_p").ToString + " " + JGrM_Buscador.GetValue("alapellido_m").ToString
+        _dibujarUbicacion(nombrecompleto, JGrM_Buscador.GetValue("alnrodoc").ToString)
         LblPaginacion.Text = Str(_MPos + 1) + "/" + JGrM_Buscador.RowCount.ToString
 
+    End Sub
+    Public Sub _dibujarUbicacion(_nombre As String, _ci As String)
+        If (_latitud <> 0 And _longitud <> 0) Then
+            Dim plg As PointLatLng = New PointLatLng(_latitud, _longitud)
+            _Overlay.Markers.Clear()
+            P_AgregarPunto(plg, _nombre, _ci)
+        Else
+
+
+            _Overlay.Markers.Clear()
+            Gmc_Cliente.Position = New PointLatLng(-17.3931784, -66.1738852)
+        End If
+    End Sub
+    Private Sub P_AgregarPunto(pointLatLng As PointLatLng, _nombre As String, _ci As String)
+        If (Not IsNothing(_Overlay)) Then
+            'añadir puntos
+            'Dim markersOverlay As New GMapOverlay("markers")
+            Dim marker As New GMarkerGoogle(pointLatLng, My.Resources.markerIcono)
+            'añadir tooltip
+            Dim mode As MarkerTooltipMode = MarkerTooltipMode.OnMouseOver
+            marker.ToolTip = New GMapBaloonToolTip(marker)
+            marker.ToolTipMode = mode
+            Dim ToolTipBackColor As New SolidBrush(Color.Blue)
+            marker.ToolTip.Fill = ToolTipBackColor
+            marker.ToolTip.Foreground = Brushes.White
+            'If (Not _nombre.ToString = String.Empty) Then
+            '    marker.ToolTipText = "CLIENTE: " + _nombre & vbNewLine & " CI:" + _ci
+            'End If
+            _Overlay.Markers.Add(marker)
+            'mapa.Overlays.Add(markersOverlay)
+            Gmc_Cliente.Position = pointLatLng
+        End If
     End Sub
     Public Overrides Sub _PMOHabilitarFocus()
 
@@ -742,6 +941,48 @@ Public Class F1_Alumno
 
         End If
 
+
+    End Sub
+
+    Private Sub BtAdicionar_Click(sender As Object, e As EventArgs) Handles BtAdicionar.Click
+        _fnCopiarImagenRutaDefinida()
+        btnGrabar.Focus()
+    End Sub
+
+    Private Sub Gmc_Cliente_DoubleClick(sender As Object, e As EventArgs) Handles Gmc_Cliente.DoubleClick
+        If (btnGrabar.Enabled = True) Then
+
+
+            _Overlay.Markers.Clear()
+
+            Dim gm As GMapControl = CType(sender, GMapControl)
+            Dim hj As MouseEventArgs = CType(e, MouseEventArgs)
+            Dim plg As PointLatLng = gm.FromLocalToLatLng(hj.X, hj.Y)
+            _latitud = plg.Lat
+            _longitud = plg.Lng
+            ''  MsgBox("latitud:" + Str(plg.Lat) + "   Logitud:" + Str(plg.Lng))
+
+            P_AgregarPunto(plg, "", "")
+
+            '' _ListPuntos.Add(plg)
+            'Btnx_ChekGetPoint.Visible = False
+        End If
+    End Sub
+
+    Private Sub ButtonX4_Click(sender As Object, e As EventArgs) Handles ButtonX4.Click
+        If (Gmc_Cliente.Zoom <= Gmc_Cliente.MaxZoom) Then
+            Gmc_Cliente.Zoom = Gmc_Cliente.Zoom + 1
+        End If
+
+    End Sub
+
+    Private Sub ButtonX3_Click(sender As Object, e As EventArgs) Handles ButtonX3.Click
+        If (Gmc_Cliente.Zoom >= Gmc_Cliente.MinZoom) Then
+            Gmc_Cliente.Zoom = Gmc_Cliente.Zoom - 1
+        End If
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 End Class

@@ -719,6 +719,116 @@ Public Class AccesoLogica
 #End Region
 
 
+#Region "Profesor"
+
+    Public Shared Function L_fnGeneralProfesor() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_PO001", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+    Public Shared Function L_fnEliminarProfesor(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@ponumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("SP_MAM_PO001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        'Else
+        '    _resultado = False
+        'End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarProfesor(ByRef _ponumi As String, _potipdoc As String,
+                                              _ponrodoc As String, _ponombre As String,
+                                              _poapellido_p As String, _poapellido_m As String, _potelf As String, _podirecc As String,
+                                              _poemail As String, _pofnac As String, _poestado As Integer
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '  @ponumi ,@potipdoc ,@ponrodoc ,@ponombre ,@poapellido_p ,@poapellido_m 
+        ',@potelefono ,@poemail ,@podireccion  ,@pofnac ,@poestado
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ponumi", _ponumi))
+        _listParam.Add(New Datos.DParametro("@potipdoc", _potipdoc))
+        _listParam.Add(New Datos.DParametro("@ponrodoc", _ponrodoc))
+        _listParam.Add(New Datos.DParametro("@ponombre", _ponombre))
+        _listParam.Add(New Datos.DParametro("@poapellido_p", _poapellido_p))
+        _listParam.Add(New Datos.DParametro("@poapellido_m", _poapellido_m))
+        _listParam.Add(New Datos.DParametro("@potelefono", _potelf))
+        _listParam.Add(New Datos.DParametro("@podireccion", _podirecc))
+        _listParam.Add(New Datos.DParametro("@poemail", _poemail))
+        _listParam.Add(New Datos.DParametro("@pofnac", _pofnac))
+        _listParam.Add(New Datos.DParametro("@poestado", _poestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_PO001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ponumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarProfesor(ByRef _ponumi As String, _potipdoc As String,
+                                              _ponrodoc As String, _ponombre As String,
+                                              _poapellido_p As String, _poapellido_m As String, _potelf As String, _podirecc As String,
+                                              _poemail As String, _pofnac As String, _poestado As Integer
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '  @ponumi ,@potipdoc ,@ponrodoc ,@ponombre ,@poapellido_p ,@poapellido_m 
+        ',@potelefono ,@poemail ,@podireccion  ,@pofnac ,@poestado
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@ponumi", _ponumi))
+        _listParam.Add(New Datos.DParametro("@potipdoc", _potipdoc))
+        _listParam.Add(New Datos.DParametro("@ponrodoc", _ponrodoc))
+        _listParam.Add(New Datos.DParametro("@ponombre", _ponombre))
+        _listParam.Add(New Datos.DParametro("@poapellido_p", _poapellido_p))
+        _listParam.Add(New Datos.DParametro("@poapellido_m", _poapellido_m))
+        _listParam.Add(New Datos.DParametro("@potelefono", _potelf))
+        _listParam.Add(New Datos.DParametro("@podireccion", _podirecc))
+        _listParam.Add(New Datos.DParametro("@poemail", _poemail))
+        _listParam.Add(New Datos.DParametro("@pofnac", _pofnac))
+        _listParam.Add(New Datos.DParametro("@poestado", _poestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_PO001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ponumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+#End Region
 #Region "Alumno-School"
 
     Public Shared Function L_fnGeneralAlumno() As DataTable
@@ -779,10 +889,10 @@ Public Class AccesoLogica
         'End If
         Return _resultado
     End Function
-    Public Shared Function L_fnGrabarAlumno(ByRef _alnumi As String, _altipdoc As String,
+    Public Shared Function L_fnNuevoAlumno(ByRef _alnumi As String, _altipdoc As String,
                                               _alnrodoc As String, _alrude As String, _alnombre As String,
                                               _alapellido_p As String, _alapellido_m As String, _altelf As String, _aldirecc As String,
-                                              _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable
+                                              _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable, _latitud As Double, _longitud As Double, _img As String
                                               ) As Boolean
         Dim _resultado As Boolean
         '   @alnumi ,@altipdoc ,@alnrodoc ,@alrude ,@alnombre ,@alapellido_p ,@alapellido_m ,@altelf ,
@@ -804,6 +914,9 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@alfnac", _alfnac))
         _listParam.Add(New Datos.DParametro("@alestado", _alestado))
         _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@allat", _latitud))
+        _listParam.Add(New Datos.DParametro("@allongi", _longitud))
+        _listParam.Add(New Datos.DParametro("@alimg", _img))
         _listParam.Add(New Datos.DParametro("@AL0011", "", _dt))
         _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
 
@@ -820,7 +933,7 @@ Public Class AccesoLogica
     Public Shared Function L_fnModificarAlumno(ByRef _alnumi As String, _altipdoc As String,
                                               _alnrodoc As String, _alrude As String, _alnombre As String,
                                               _alapellido_p As String, _alapellido_m As String, _altelf As String, _aldirecc As String,
-                                              _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable
+                                              _alemail As String, _alfnac As String, _alestado As Integer, _dt As DataTable, _latitud As Double, _longitud As Double, _img As String
                                               ) As Boolean
         Dim _resultado As Boolean
         '   @alnumi ,@altipdoc ,@alnrodoc ,@alrude ,@alnombre ,@alapellido_p ,@alapellido_m ,@altelf ,
@@ -842,6 +955,9 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@alfnac", _alfnac))
         _listParam.Add(New Datos.DParametro("@alestado", _alestado))
         _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@allat", _latitud))
+        _listParam.Add(New Datos.DParametro("@allongi", _longitud))
+        _listParam.Add(New Datos.DParametro("@alimg", _img))
         _listParam.Add(New Datos.DParametro("@AL0011", "", _dt))
         _Tabla = D_ProcedimientoConParam("SP_MAM_AL001", _listParam)
 

@@ -313,8 +313,6 @@ Public Class P_Principal
 
     Private Sub btConfTipoEquipo_Click(sender As Object, e As EventArgs) Handles btConfProducto.Click
         SideNav1.IsMenuExpanded = False
-
-        SideNav1.IsMenuExpanded = False
         Ventana.Select()
         Dim frm As New F1_Titulares
         frm._nameButton = btConfProducto.Name
@@ -384,5 +382,21 @@ Public Class P_Principal
 
     End Sub
 
+    Private Sub btConfPrecio_Click(sender As Object, e As EventArgs) Handles btConfPrecio.Click
+        SideNav1.IsMenuExpanded = False
 
+        Dim frm As New F1_Profesor
+        frm._nameButton = btConfPrecio.Name
+        frm._modulo = FP_Configuracion
+        Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        frm._tab = tab3
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        Ventana.Select()
+        frm.Show()
+        tab3.Text = frm.Text
+        tab3.Icon = frm.Icon
+
+    End Sub
 End Class
