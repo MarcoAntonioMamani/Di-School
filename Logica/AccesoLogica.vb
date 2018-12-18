@@ -719,6 +719,145 @@ Public Class AccesoLogica
 #End Region
 
 
+#Region "Cursos-School"
+
+    Public Shared Function L_fnGeneralCurso() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGeneralProfesorObtener() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGeneralListarMaterias() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnDetalleMaterias(numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@cunumi", numi))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnEliminarCurso(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@cunumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        'Else
+        '    _resultado = False
+        'End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarCurso(ByRef _cunumi As String, _cudescripcion As String,
+                                           _cunivel As Integer, _cugrado As Integer, _cuparalelo As Integer,
+                                           _cugestion As Integer, _cupo001 As Integer, _cuestado As Integer, _dt As DataTable
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '    @cunumi  ,@cudescripcion,@cunivel  ,@cugrado ,@cuparalelo ,
+        '@cugestion ,@cupo001 ,@cuestado
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@cunumi", _cunumi))
+        _listParam.Add(New Datos.DParametro("@cudescripcion", _cudescripcion))
+        _listParam.Add(New Datos.DParametro("@cunivel", _cunivel))
+        _listParam.Add(New Datos.DParametro("@cugrado", _cugrado))
+        _listParam.Add(New Datos.DParametro("@cuparalelo", _cuparalelo))
+        _listParam.Add(New Datos.DParametro("@cugestion", _cugestion))
+        _listParam.Add(New Datos.DParametro("@cupo001", _cupo001))
+        _listParam.Add(New Datos.DParametro("@cuestado", _cuestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@CU0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _cunumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarCurso(ByRef _cunumi As String, _cudescripcion As String,
+                                           _cunivel As Integer, _cugrado As Integer, _cuparalelo As Integer,
+                                           _cugestion As Integer, _cupo001 As Integer, _cuestado As Integer, _dt As DataTable
+                                              ) As Boolean
+        Dim _resultado As Boolean
+        '    @cunumi  ,@cudescripcion,@cunivel  ,@cugrado ,@cuparalelo ,
+        '@cugestion ,@cupo001 ,@cuestado
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@cunumi", _cunumi))
+        _listParam.Add(New Datos.DParametro("@cudescripcion", _cudescripcion))
+        _listParam.Add(New Datos.DParametro("@cunivel", _cunivel))
+        _listParam.Add(New Datos.DParametro("@cugrado", _cugrado))
+        _listParam.Add(New Datos.DParametro("@cuparalelo", _cuparalelo))
+        _listParam.Add(New Datos.DParametro("@cugestion", _cugestion))
+        _listParam.Add(New Datos.DParametro("@cupo001", _cupo001))
+        _listParam.Add(New Datos.DParametro("@cuestado", _cuestado))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@CU0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _cunumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+#End Region
+
 #Region "Profesor"
 
     Public Shared Function L_fnGeneralProfesor() As DataTable

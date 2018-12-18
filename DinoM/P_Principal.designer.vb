@@ -29,10 +29,10 @@ Partial Class P_Principal
         Me.MetroTilePanel1 = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btConfRoles = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfUsuarios = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.btConfCliente = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.btConfProducto = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.btConfPrecio = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfLibreria = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btConfCliente = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btConfPrecio = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btConfProducto = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfMateria = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btConfDosificacion = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -236,6 +236,22 @@ Partial Class P_Principal
         Me.btConfUsuarios.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btConfUsuarios.TitleText = "USUARIOS"
         '
+        'btConfLibreria
+        '
+        Me.btConfLibreria.Image = Global.DinoM.My.Resources.Resources.check_mark
+        Me.btConfLibreria.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btConfLibreria.Name = "btConfLibreria"
+        Me.btConfLibreria.SymbolColor = System.Drawing.Color.Empty
+        Me.btConfLibreria.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
+        Me.btConfLibreria.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btConfLibreria.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(164, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btConfLibreria.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btConfLibreria.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btConfLibreria.TitleText = "LIBRERIA"
+        '
         'btConfCliente
         '
         Me.btConfCliente.Image = Global.DinoM.My.Resources.Resources.estudiante_icono
@@ -251,22 +267,6 @@ Partial Class P_Principal
         Me.btConfCliente.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(155, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.btConfCliente.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btConfCliente.TitleText = "ALUMNO"
-        '
-        'btConfProducto
-        '
-        Me.btConfProducto.Image = Global.DinoM.My.Resources.Resources.teachers_icono
-        Me.btConfProducto.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btConfProducto.Name = "btConfProducto"
-        Me.btConfProducto.SymbolColor = System.Drawing.Color.Empty
-        Me.btConfProducto.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
-        Me.btConfProducto.TileSize = New System.Drawing.Size(250, 135)
-        '
-        '
-        '
-        Me.btConfProducto.TileStyle.BackColor = System.Drawing.Color.Crimson
-        Me.btConfProducto.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.btConfProducto.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.btConfProducto.TitleText = "TITULARES"
         '
         'btConfPrecio
         '
@@ -284,21 +284,21 @@ Partial Class P_Principal
         Me.btConfPrecio.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btConfPrecio.TitleText = "PROFESORES"
         '
-        'btConfLibreria
+        'btConfProducto
         '
-        Me.btConfLibreria.Image = Global.DinoM.My.Resources.Resources.check_mark
-        Me.btConfLibreria.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btConfLibreria.Name = "btConfLibreria"
-        Me.btConfLibreria.SymbolColor = System.Drawing.Color.Empty
-        Me.btConfLibreria.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
-        Me.btConfLibreria.TileSize = New System.Drawing.Size(250, 135)
+        Me.btConfProducto.Image = Global.DinoM.My.Resources.Resources.teachers_icono
+        Me.btConfProducto.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btConfProducto.Name = "btConfProducto"
+        Me.btConfProducto.SymbolColor = System.Drawing.Color.Empty
+        Me.btConfProducto.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
+        Me.btConfProducto.TileSize = New System.Drawing.Size(250, 135)
         '
         '
         '
-        Me.btConfLibreria.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(164, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btConfLibreria.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btConfLibreria.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.btConfLibreria.TitleText = "LIBRERIA"
+        Me.btConfProducto.TileStyle.BackColor = System.Drawing.Color.Crimson
+        Me.btConfProducto.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.btConfProducto.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btConfProducto.TitleText = "TITULARES"
         '
         'btConfMateria
         '
