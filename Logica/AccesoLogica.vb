@@ -769,6 +769,19 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+
+    Public Shared Function L_fnDetalleParalelo(numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@cunumi", numi))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
+
+        Return _Tabla
+    End Function
     Public Shared Function L_fnEliminarCurso(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
         'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
@@ -793,8 +806,7 @@ Public Class AccesoLogica
     End Function
     Public Shared Function L_fnGrabarCurso(ByRef _cunumi As String, _cudescripcion As String,
                                            _cunivel As Integer, _cugrado As Integer, _cuparalelo As Integer,
-                                           _cugestion As Integer, _cupo001 As Integer, _cuestado As Integer, _dt As DataTable
-                                              ) As Boolean
+                                           _cugestion As Integer, _cupo001 As Integer, _cuestado As Integer, _dt As DataTable, _dt2 As DataTable) As Boolean
         Dim _resultado As Boolean
         '    @cunumi  ,@cudescripcion,@cunivel  ,@cugrado ,@cuparalelo ,
         '@cugestion ,@cupo001 ,@cuestado
@@ -812,6 +824,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@cuestado", _cuestado))
         _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@CU0011", "", _dt))
+        _listParam.Add(New Datos.DParametro("@CU0012", "", _dt2))
         _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
 
         If _Tabla.Rows.Count > 0 Then
@@ -826,8 +839,7 @@ Public Class AccesoLogica
 
     Public Shared Function L_fnModificarCurso(ByRef _cunumi As String, _cudescripcion As String,
                                            _cunivel As Integer, _cugrado As Integer, _cuparalelo As Integer,
-                                           _cugestion As Integer, _cupo001 As Integer, _cuestado As Integer, _dt As DataTable
-                                              ) As Boolean
+                                           _cugestion As Integer, _cupo001 As Integer, _cuestado As Integer, _dt As DataTable, _dt2 As DataTable) As Boolean
         Dim _resultado As Boolean
         '    @cunumi  ,@cudescripcion,@cunivel  ,@cugrado ,@cuparalelo ,
         '@cugestion ,@cupo001 ,@cuestado
@@ -845,6 +857,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@cuestado", _cuestado))
         _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@CU0011", "", _dt))
+        _listParam.Add(New Datos.DParametro("@CU0012", "", _dt2))
         _Tabla = D_ProcedimientoConParam("SP_MAM_CU001", _listParam)
 
         If _Tabla.Rows.Count > 0 Then

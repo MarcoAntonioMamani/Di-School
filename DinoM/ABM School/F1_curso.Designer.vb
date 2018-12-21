@@ -55,6 +55,15 @@ Partial Class F1_curso
         Me.PanelDatosTelefono = New System.Windows.Forms.Panel()
         Me.tbmateria = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
+        Me.SuperTabControl1 = New DevComponents.DotNetBar.SuperTabControl()
+        Me.SuperTabItem1 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel1 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.grparalelo = New Janus.Windows.GridEX.GridEX()
+        Me.PanelDatosParalelo = New System.Windows.Forms.Panel()
+        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -81,6 +90,13 @@ Partial Class F1_curso
         Me.Panel2.SuspendLayout()
         CType(Me.grdetalle_telefono, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDatosTelefono.SuspendLayout()
+        CType(Me.SuperTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuperTabControl1.SuspendLayout()
+        Me.SuperTabControlPanel1.SuspendLayout()
+        Me.SuperTabControlPanel2.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        CType(Me.grparalelo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelDatosParalelo.SuspendLayout()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -278,9 +294,6 @@ Partial Class F1_curso
         Me.Panel1.Controls.Add(Me.LabelX5)
         Me.Panel1.Controls.Add(Me.btcbgestion)
         Me.Panel1.Controls.Add(Me.cbgestion)
-        Me.Panel1.Controls.Add(Me.LabelX4)
-        Me.Panel1.Controls.Add(Me.btcbparalelo)
-        Me.Panel1.Controls.Add(Me.cbparalelo)
         Me.Panel1.Controls.Add(Me.LabelX3)
         Me.Panel1.Controls.Add(Me.btcbgrado)
         Me.Panel1.Controls.Add(Me.cbgrado)
@@ -308,7 +321,7 @@ Partial Class F1_curso
         Me.tbprofesor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbprofesor.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbprofesor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbprofesor.Location = New System.Drawing.Point(228, 309)
+        Me.tbprofesor.Location = New System.Drawing.Point(228, 282)
         Me.tbprofesor.Margin = New System.Windows.Forms.Padding(4)
         Me.tbprofesor.Name = "tbprofesor"
         Me.tbprofesor.PreventEnterBeep = True
@@ -325,13 +338,13 @@ Partial Class F1_curso
         Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX6.Location = New System.Drawing.Point(37, 311)
+        Me.LabelX6.Location = New System.Drawing.Point(37, 284)
         Me.LabelX6.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX6.Name = "LabelX6"
         Me.LabelX6.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX6.Size = New System.Drawing.Size(66, 19)
+        Me.LabelX6.Size = New System.Drawing.Size(51, 19)
         Me.LabelX6.TabIndex = 257
-        Me.LabelX6.Text = "Profesor:"
+        Me.LabelX6.Text = "Titular:"
         '
         'LabelX5
         '
@@ -343,7 +356,7 @@ Partial Class F1_curso
         Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX5.Location = New System.Drawing.Point(38, 265)
+        Me.LabelX5.Location = New System.Drawing.Point(38, 238)
         Me.LabelX5.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
@@ -358,7 +371,7 @@ Partial Class F1_curso
         Me.btcbgestion.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btcbgestion.Image = Global.DinoM.My.Resources.Resources.add
         Me.btcbgestion.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btcbgestion.Location = New System.Drawing.Point(428, 265)
+        Me.btcbgestion.Location = New System.Drawing.Point(428, 238)
         Me.btcbgestion.Margin = New System.Windows.Forms.Padding(4)
         Me.btcbgestion.Name = "btcbgestion"
         Me.btcbgestion.Size = New System.Drawing.Size(37, 28)
@@ -373,7 +386,7 @@ Partial Class F1_curso
         cbgestion_DesignTimeLayout.LayoutString = resources.GetString("cbgestion_DesignTimeLayout.LayoutString")
         Me.cbgestion.DesignTimeLayout = cbgestion_DesignTimeLayout
         Me.cbgestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbgestion.Location = New System.Drawing.Point(228, 266)
+        Me.cbgestion.Location = New System.Drawing.Point(228, 239)
         Me.cbgestion.Margin = New System.Windows.Forms.Padding(4)
         Me.cbgestion.Name = "cbgestion"
         Me.cbgestion.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
@@ -394,7 +407,7 @@ Partial Class F1_curso
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(38, 231)
+        Me.LabelX4.Location = New System.Drawing.Point(51, 45)
         Me.LabelX4.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
@@ -409,7 +422,7 @@ Partial Class F1_curso
         Me.btcbparalelo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btcbparalelo.Image = Global.DinoM.My.Resources.Resources.add
         Me.btcbparalelo.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btcbparalelo.Location = New System.Drawing.Point(428, 231)
+        Me.btcbparalelo.Location = New System.Drawing.Point(331, 42)
         Me.btcbparalelo.Margin = New System.Windows.Forms.Padding(4)
         Me.btcbparalelo.Name = "btcbparalelo"
         Me.btcbparalelo.Size = New System.Drawing.Size(37, 28)
@@ -424,7 +437,7 @@ Partial Class F1_curso
         cbparalelo_DesignTimeLayout.LayoutString = resources.GetString("cbparalelo_DesignTimeLayout.LayoutString")
         Me.cbparalelo.DesignTimeLayout = cbparalelo_DesignTimeLayout
         Me.cbparalelo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbparalelo.Location = New System.Drawing.Point(228, 232)
+        Me.cbparalelo.Location = New System.Drawing.Point(131, 42)
         Me.cbparalelo.Margin = New System.Windows.Forms.Padding(4)
         Me.cbparalelo.Name = "cbparalelo"
         Me.cbparalelo.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
@@ -615,7 +628,7 @@ Partial Class F1_curso
         '
         Me.swEstado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.swEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swEstado.Location = New System.Drawing.Point(228, 353)
+        Me.swEstado.Location = New System.Drawing.Point(228, 326)
         Me.swEstado.Margin = New System.Windows.Forms.Padding(4)
         Me.swEstado.Name = "swEstado"
         Me.swEstado.OffBackColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -639,7 +652,7 @@ Partial Class F1_curso
         Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX9.Location = New System.Drawing.Point(38, 351)
+        Me.LabelX9.Location = New System.Drawing.Point(38, 324)
         Me.LabelX9.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX9.Name = "LabelX9"
         Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
@@ -651,7 +664,7 @@ Partial Class F1_curso
         '
         Me.GroupPanel2.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.GroupPanel2.Controls.Add(Me.Panel2)
+        Me.GroupPanel2.Controls.Add(Me.SuperTabControl1)
         Me.GroupPanel2.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel2.Location = New System.Drawing.Point(832, 0)
@@ -696,7 +709,7 @@ Partial Class F1_curso
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(409, 393)
+        Me.Panel2.Size = New System.Drawing.Size(409, 363)
         Me.Panel2.TabIndex = 0
         '
         'grdetalle_telefono
@@ -711,7 +724,7 @@ Partial Class F1_curso
         Me.grdetalle_telefono.Name = "grdetalle_telefono"
         Me.grdetalle_telefono.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grdetalle_telefono.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grdetalle_telefono.Size = New System.Drawing.Size(409, 291)
+        Me.grdetalle_telefono.Size = New System.Drawing.Size(409, 261)
         Me.grdetalle_telefono.TabIndex = 1
         Me.grdetalle_telefono.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         Me.grdetalle_telefono.VisualStyleAreas.ScrollBarsStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -760,6 +773,126 @@ Partial Class F1_curso
         Me.LabelX7.TabIndex = 250
         Me.LabelX7.Text = "Materia:"
         '
+        'SuperTabControl1
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.SuperTabControl1.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.SuperTabControl1.ControlBox.MenuBox.Name = ""
+        Me.SuperTabControl1.ControlBox.Name = ""
+        Me.SuperTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl1.ControlBox.MenuBox, Me.SuperTabControl1.ControlBox.CloseBox})
+        Me.SuperTabControl1.Controls.Add(Me.SuperTabControlPanel1)
+        Me.SuperTabControl1.Controls.Add(Me.SuperTabControlPanel2)
+        Me.SuperTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControl1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SuperTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SuperTabControl1.Name = "SuperTabControl1"
+        Me.SuperTabControl1.ReorderTabsEnabled = True
+        Me.SuperTabControl1.SelectedTabFont = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SuperTabControl1.SelectedTabIndex = 0
+        Me.SuperTabControl1.Size = New System.Drawing.Size(409, 393)
+        Me.SuperTabControl1.TabFont = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SuperTabControl1.TabIndex = 251
+        Me.SuperTabControl1.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem1, Me.SuperTabItem2})
+        Me.SuperTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue
+        Me.SuperTabControl1.Text = "Materias"
+        '
+        'SuperTabItem1
+        '
+        Me.SuperTabItem1.AttachedControl = Me.SuperTabControlPanel1
+        Me.SuperTabItem1.GlobalItem = False
+        Me.SuperTabItem1.Name = "SuperTabItem1"
+        Me.SuperTabItem1.Text = "Materias"
+        '
+        'SuperTabControlPanel1
+        '
+        Me.SuperTabControlPanel1.Controls.Add(Me.Panel2)
+        Me.SuperTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel1.Location = New System.Drawing.Point(0, 30)
+        Me.SuperTabControlPanel1.Name = "SuperTabControlPanel1"
+        Me.SuperTabControlPanel1.Size = New System.Drawing.Size(409, 363)
+        Me.SuperTabControlPanel1.TabIndex = 1
+        Me.SuperTabControlPanel1.TabItem = Me.SuperTabItem1
+        '
+        'SuperTabItem2
+        '
+        Me.SuperTabItem2.AttachedControl = Me.SuperTabControlPanel2
+        Me.SuperTabItem2.GlobalItem = False
+        Me.SuperTabItem2.Name = "SuperTabItem2"
+        Me.SuperTabItem2.Text = "Paralelos"
+        '
+        'SuperTabControlPanel2
+        '
+        Me.SuperTabControlPanel2.Controls.Add(Me.Panel3)
+        Me.SuperTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 32)
+        Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(409, 361)
+        Me.SuperTabControlPanel2.TabIndex = 0
+        Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem2
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.grparalelo)
+        Me.Panel3.Controls.Add(Me.PanelDatosParalelo)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(409, 361)
+        Me.Panel3.TabIndex = 1
+        '
+        'grparalelo
+        '
+        Me.grparalelo.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
+        Me.grparalelo.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.grparalelo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grparalelo.FocusStyle = Janus.Windows.GridEX.FocusStyle.Solid
+        Me.grparalelo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grparalelo.HeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grparalelo.Location = New System.Drawing.Point(0, 141)
+        Me.grparalelo.Name = "grparalelo"
+        Me.grparalelo.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.grparalelo.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.grparalelo.Size = New System.Drawing.Size(409, 220)
+        Me.grparalelo.TabIndex = 1
+        Me.grparalelo.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        Me.grparalelo.VisualStyleAreas.ScrollBarsStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'PanelDatosParalelo
+        '
+        Me.PanelDatosParalelo.Controls.Add(Me.ButtonX1)
+        Me.PanelDatosParalelo.Controls.Add(Me.cbparalelo)
+        Me.PanelDatosParalelo.Controls.Add(Me.btcbparalelo)
+        Me.PanelDatosParalelo.Controls.Add(Me.LabelX4)
+        Me.PanelDatosParalelo.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelDatosParalelo.Location = New System.Drawing.Point(0, 0)
+        Me.PanelDatosParalelo.Name = "PanelDatosParalelo"
+        Me.PanelDatosParalelo.Size = New System.Drawing.Size(409, 141)
+        Me.PanelDatosParalelo.TabIndex = 0
+        '
+        'ButtonX1
+        '
+        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX1.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.ButtonX1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonX1.Image = Global.DinoM.My.Resources.Resources.add
+        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(25, 23)
+        Me.ButtonX1.Location = New System.Drawing.Point(131, 88)
+        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonX1.Name = "ButtonX1"
+        Me.ButtonX1.Size = New System.Drawing.Size(144, 46)
+        Me.ButtonX1.TabIndex = 253
+        Me.ButtonX1.Tag = ""
+        Me.ButtonX1.Text = "Agregar"
+        '
         'F1_curso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -798,6 +931,14 @@ Partial Class F1_curso
         CType(Me.grdetalle_telefono, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDatosTelefono.ResumeLayout(False)
         Me.PanelDatosTelefono.PerformLayout()
+        CType(Me.SuperTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SuperTabControl1.ResumeLayout(False)
+        Me.SuperTabControlPanel1.ResumeLayout(False)
+        Me.SuperTabControlPanel2.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        CType(Me.grparalelo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelDatosParalelo.ResumeLayout(False)
+        Me.PanelDatosParalelo.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -830,4 +971,13 @@ Partial Class F1_curso
     Friend WithEvents LabelX3 As DevComponents.DotNetBar.LabelX
     Friend WithEvents btcbgrado As DevComponents.DotNetBar.ButtonX
     Friend WithEvents cbgrado As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents SuperTabControl1 As DevComponents.DotNetBar.SuperTabControl
+    Friend WithEvents SuperTabControlPanel2 As DevComponents.DotNetBar.SuperTabControlPanel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents grparalelo As Janus.Windows.GridEX.GridEX
+    Friend WithEvents PanelDatosParalelo As Panel
+    Friend WithEvents SuperTabItem2 As DevComponents.DotNetBar.SuperTabItem
+    Friend WithEvents SuperTabControlPanel1 As DevComponents.DotNetBar.SuperTabControlPanel
+    Friend WithEvents SuperTabItem1 As DevComponents.DotNetBar.SuperTabItem
+    Friend WithEvents ButtonX1 As DevComponents.DotNetBar.ButtonX
 End Class

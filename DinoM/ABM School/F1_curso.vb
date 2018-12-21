@@ -29,7 +29,7 @@ Public Class F1_curso
         _prCargarComboLibreria(cbgestion, 7, 1)
         _prAsignarPermisos()
         _PMIniciarTodo()
-
+        SuperTabControl1.SelectedTabIndex = 0
 
         Dim blah As New Bitmap(New Bitmap(My.Resources.cursos), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
@@ -108,12 +108,84 @@ Public Class F1_curso
 
     End Sub
 
-    Public Sub _prCargarIconELiminar()
+    Private Sub _prCargarDetalleParalelo(_numi As String)
+        Dim dt As New DataTable
 
+        dt = L_fnDetalleParalelo(_numi)
+        grparalelo.DataSource = dt
+        grparalelo.RetrieveStructure()
+        grparalelo.AlternatingColors = True
+        ''a.cbnumi , a.cbcu001, a.cbparalelo, paralelo.ycdes3 As paralelo , 1 As estado, cast('' as image) as img 
+        With grparalelo.RootTable.Columns("cbnumi")
+            .Width = 100
+            .Caption = "CODIGO"
+            .Visible = False
+        End With
+        With grparalelo.RootTable.Columns("cbcu001")
+            .Width = 90
+            .Visible = False
+        End With
+        With grparalelo.RootTable.Columns("cbparalelo")
+            .Width = 150
+            .Visible = True
+            .Caption = "Codigo Paralelo".ToUpper
+        End With
+        With grparalelo.RootTable.Columns("paralelo")
+            .Width = 250
+            .Visible = True
+            .Caption = "PARALELO"
+        End With
+        With grparalelo.RootTable.Columns("estado")
+            .Width = 90
+            .Visible = False
+        End With
+        If (_fnActionAccesible()) Then
+
+            With grparalelo.RootTable.Columns("img")
+                .Width = 120
+                .Caption = ""
+                .Visible = True
+            End With
+        Else
+            With grparalelo.RootTable.Columns("img")
+                .Width = 120
+                .Caption = ""
+                .Visible = False
+            End With
+        End If
+
+
+
+        With grparalelo
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .TotalRow = InheritableBoolean.True
+            .TotalRowFormatStyle.BackColor = Color.Gold
+            .TotalRowPosition = TotalRowPosition.BottomFixed
+            .VisualStyle = VisualStyle.Office2007
+        End With
+        _prCargarIconELiminarParalelo()
+
+    End Sub
+
+    Public Sub _prCargarIconELiminarParalelo()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
+
+        For i As Integer = 0 To CType(grparalelo.DataSource, DataTable).Rows.Count - 1 Step 1
+
+            CType(grparalelo.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
+            'grdetalle_telefono.RootTable.Columns("img").Visible = True
+        Next
+
+    End Sub
+    Public Sub _prCargarIconELiminar()
+        Dim Bin As New MemoryStream
+        Dim img As New Bitmap(My.Resources.delete, 28, 28)
+        img.Save(Bin, Imaging.ImageFormat.Png)
         For i As Integer = 0 To CType(grdetalle_telefono.DataSource, DataTable).Rows.Count - 1 Step 1
-            Dim Bin As New MemoryStream
-            Dim img As New Bitmap(My.Resources.delete, 28, 28)
-            img.Save(Bin, Imaging.ImageFormat.Png)
+
             CType(grdetalle_telefono.DataSource, DataTable).Rows(i).Item("img") = Bin.GetBuffer
             'grdetalle_telefono.RootTable.Columns("img").Visible = True
         Next
@@ -133,6 +205,17 @@ Public Class F1_curso
     Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer)
         For i As Integer = 0 To CType(grdetalle_telefono.DataSource, DataTable).Rows.Count - 1 Step 1
             Dim _numi As Integer = CType(grdetalle_telefono.DataSource, DataTable).Rows(i).Item("canumi")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+
+    End Sub
+
+    Public Sub _fnObtenerFilaDetalleParalelo(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(grparalelo.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(grparalelo.DataSource, DataTable).Rows(i).Item("cbnumi")
             If (_numi = numi) Then
                 pos = i
                 Return
@@ -160,6 +243,35 @@ Public Class F1_curso
                 If (grdetalle_telefono.RowCount > 1) Then
                     grdetalle_telefono.Col = 4
                     grdetalle_telefono.Row = grdetalle_telefono.RowCount - 1
+                End If
+
+
+            End If
+        End If
+
+
+    End Sub
+
+    Public Sub _prEliminarFilaParalelo()
+        If (grparalelo.Row >= 0) Then
+            If (grparalelo.RowCount >= 1) Then
+                Dim estado As Integer = grparalelo.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = grparalelo.GetValue("cbnumi")
+                _fnObtenerFilaDetalleParalelo(pos, lin)
+                If (estado = 0) Then
+                    CType(grparalelo.DataSource, DataTable).Rows(pos).Item("estado") = -2
+
+                End If
+                If (estado = 1) Then
+                    CType(grparalelo.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+                grparalelo.RootTable.ApplyFilter(New Janus.Windows.GridEX.GridEXFilterCondition(grparalelo.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0))
+
+                grparalelo.Select()
+                If (grparalelo.RowCount > 1) Then
+                    grparalelo.Col = 4
+                    grparalelo.Row = grparalelo.RowCount - 1
                 End If
 
 
@@ -236,7 +348,7 @@ Public Class F1_curso
         swEstado.IsReadOnly = False
 
         PanelDatosTelefono.Visible = True
-
+        PanelDatosParalelo.Visible = True
         If (CType(cbgestion.DataSource, DataTable).Rows.Count > 0) Then
             cbgestion.SelectedIndex = 0
         End If
@@ -250,6 +362,7 @@ Public Class F1_curso
             cbnivel.SelectedIndex = 0
         End If
         grdetalle_telefono.RootTable.Columns("img").Visible = True
+        grparalelo.RootTable.Columns("img").Visible = True
         btnImprimir.Visible = False
     End Sub
 
@@ -267,17 +380,20 @@ Public Class F1_curso
         JGrM_Buscador.Focus()
         Limpiar = False
         btnImprimir.Visible = True
-
+        PanelDatosParalelo.Visible = False
         grdetalle_telefono.RootTable.Columns("img").Visible = False
+        grparalelo.RootTable.Columns("img").Visible = False
     End Sub
 
     Public Overrides Sub _PMOLimpiar()
         tbCodigo.Clear()
         tbdescripcion.Clear()
         _IdProfesor = 0
+        tbprofesor.Clear()
         tbmateria.Clear()
         swEstado.Value = True
         _prCargarDetalleMaterias(-1)
+        _prCargarDetalleParalelo(-1)
         If (CType(cbgestion.DataSource, DataTable).Rows.Count > 0) Then
             cbgestion.SelectedIndex = 0
         End If
@@ -319,7 +435,7 @@ Public Class F1_curso
 
         Dim numi As String = ""
 
-        Dim res As Boolean = L_fnGrabarCurso(numi, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable))
+        Dim res As Boolean = L_fnGrabarCurso(numi, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), CType(grparalelo.DataSource, DataTable))
 
 
         If res Then
@@ -348,7 +464,7 @@ Public Class F1_curso
     Public Overrides Function _PMOModificarRegistro() As Boolean
         Dim res As Boolean
 
-        res = L_fnModificarCurso(tbCodigo.Text, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable))
+        res = L_fnModificarCurso(tbCodigo.Text, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), CType(grparalelo.DataSource, DataTable))
 
         If res Then
 
@@ -487,7 +603,7 @@ Public Class F1_curso
         listEstCeldas.Add(New Modelo.Celda("cugrado", False))
         listEstCeldas.Add(New Modelo.Celda("grado", True, "Grado".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("cuparalelo", False))
-        listEstCeldas.Add(New Modelo.Celda("paralelo", True, "paralelo".ToUpper, 120))
+        listEstCeldas.Add(New Modelo.Celda("paralelo", False, "paralelo".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("cugestion", False))
         listEstCeldas.Add(New Modelo.Celda("gestion", True, "gestion".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("cupo001", False))
@@ -526,6 +642,7 @@ Public Class F1_curso
             lbHora.Text = .GetValue("cuhact").ToString
             lbUsuario.Text = .GetValue("cuuact").ToString
             _prCargarDetalleMaterias(.GetValue("cunumi").ToString)
+            _prCargarDetalleParalelo(.GetValue("cunumi").ToString)
         End With
 
         LblPaginacion.Text = Str(_MPos + 1) + "/" + JGrM_Buscador.RowCount.ToString
@@ -644,7 +761,7 @@ Public Class F1_curso
         End If
     End Sub
 
-    Private Sub tbprofesor_TextChanged(sender As Object, e As EventArgs) Handles tbprofesor.TextChanged
+    Private Sub tbprofesor_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -672,7 +789,7 @@ Public Class F1_curso
                 ef.listEstCeldas = listEstCeldas
                 ef.alto = 50
                 ef.ancho = 350
-                ef.Context = "Seleccione Profesor".ToUpper
+                ef.Context = "Seleccione TITULAR".ToUpper
                 ef.ShowDialog()
                 Dim bandera As Boolean = False
                 bandera = ef.band
@@ -752,4 +869,57 @@ Public Class F1_curso
         End If
         Return 1
     End Function
+    Public Function _fnSiguienteNumiParalelo()
+        Dim dt As DataTable = CType(grparalelo.DataSource, DataTable)
+        Dim rows() As DataRow = dt.Select("cbnumi=MAX(cbnumi)")
+        If (rows.Count > 0) Then
+            Return rows(rows.Count - 1).Item("cbnumi")
+        End If
+        Return 1
+    End Function
+    Function _fnvalidardatos() As Boolean
+        Dim _ok As Boolean = True
+        MEP.Clear()
+
+
+        If cbparalelo.SelectedIndex < 0 Then
+            cbparalelo.BackColor = Color.Red
+
+            MEP.SetError(cbparalelo, "seleccione un paralelo!".ToUpper)
+
+        Else
+            cbparalelo.BackColor = Color.White
+            MEP.SetError(cbparalelo, "")
+        End If
+        MHighlighterFocus.UpdateHighlights()
+        Return _ok
+    End Function
+    Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles ButtonX1.Click
+        If (_fnvalidardatos() = True) Then
+            cbparalelo.BackColor = Color.White
+            MEP.SetError(cbparalelo, "")
+            cbparalelo.BackColor = Color.White
+            MEP.SetError(cbparalelo, "")
+            Dim Bin As New MemoryStream
+            Dim img As New Bitmap(My.Resources.delete, 28, 28)
+            img.Save(Bin, Imaging.ImageFormat.Png)
+            'a.cbnumi ,a.cbcu001 ,a.cbparalelo, paralelo .ycdes3 as paralelo ,1 as estado,cast('' as image) as img 
+            CType(grparalelo.DataSource, DataTable).Rows.Add(_fnSiguienteNumiParalelo() + 1, 0, cbparalelo.Value, cbparalelo.Text, 0, Bin.GetBuffer)
+
+            cbparalelo.Focus()
+
+        End If
+    End Sub
+
+    Private Sub grparalelo_MouseClick(sender As Object, e As MouseEventArgs) Handles grparalelo.MouseClick
+        If (Not _fnActionAccesible()) Then
+            Return
+        End If
+
+        If (grparalelo.RowCount >= 1 And Not IsNothing(grparalelo.CurrentColumn)) Then
+            If (grparalelo.CurrentColumn.Index = grparalelo.RootTable.Columns("img").Index) Then
+                _prEliminarFilaParalelo()
+            End If
+        End If
+    End Sub
 End Class
