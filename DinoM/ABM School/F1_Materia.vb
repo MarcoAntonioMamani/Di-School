@@ -20,6 +20,8 @@ Public Class F1_Materia
         Me.Text = "MATERIAS"
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prMaxLength()
+        _prCargarComboLibreria(cbarea, 9, 1)
+
         _prAsignarPermisos()
         _PMIniciarTodo()
 
@@ -28,6 +30,22 @@ Public Class F1_Materia
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         Me.Icon = ico
 
+
+    End Sub
+    Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
+        Dim dt As New DataTable
+        dt = L_prLibreriaClienteLGeneral(cod1, cod2)
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("yccod3").Width = 70
+            .DropDownList.Columns("yccod3").Caption = "COD"
+            .DropDownList.Columns.Add("ycdes3").Width = 200
+            .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
+            .ValueMember = "yccod3"
+            .DisplayMember = "ycdes3"
+            .DataSource = dt
+            .Refresh()
+        End With
 
     End Sub
     Public Sub _prStyleJanus()
@@ -39,7 +57,8 @@ Public Class F1_Materia
 
     Public Sub _prMaxLength()
         tbnombre.MaxLength = 60
-        tbdescripcion.MaxLength = 200
+        cbarea.MaxLength = 120
+        'tbdescripcion.MaxLength = 200
     End Sub
 
 
@@ -122,13 +141,16 @@ Public Class F1_Materia
     Public Overrides Sub _PMOHabilitar()
 
 
-        tbdescripcion.ReadOnly = False
+        'tbdescripcion.ReadOnly = False
         tbnombre.ReadOnly = False
+        cbarea.ReadOnly = False
 
         swEstado.IsReadOnly = False
         swespecial.IsReadOnly = False
 
-
+        If (CType(cbarea.DataSource, DataTable).Rows.Count > 0) Then
+            cbarea.SelectedIndex = 0
+        End If
 
         btnImprimir.Visible = False
     End Sub
@@ -136,9 +158,9 @@ Public Class F1_Materia
     Public Overrides Sub _PMOInhabilitar()
 
 
-        tbdescripcion.ReadOnly = True
+        'tbdescripcion.ReadOnly = True
         tbnombre.ReadOnly = True
-
+        cbarea.ReadOnly = True
         swEstado.IsReadOnly = True
         swespecial.IsReadOnly = True
 
@@ -151,13 +173,15 @@ Public Class F1_Materia
     Public Overrides Sub _PMOLimpiar()
         tbCodigo.Clear()
         tbnombre.Clear()
-        tbdescripcion.Clear()
+        'tbdescripcion.Clear()
         swespecial.Value = False
         swEstado.Value = True
 
 
         tbnombre.Focus()
-
+        If (CType(cbarea.DataSource, DataTable).Rows.Count > 0) Then
+            cbarea.SelectedIndex = 0
+        End If
 
     End Sub
     Public Sub _prSeleccionarCombo(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
@@ -172,13 +196,14 @@ Public Class F1_Materia
     Public Overrides Sub _PMOLimpiarErrores()
         MEP.Clear()
         tbnombre.BackColor = Color.White
+        cbarea.BackColor = Color.White
 
     End Sub
 
     Public Overrides Function _PMOGrabarRegistro() As Boolean
         Dim numi As String = ""
 
-        Dim res As Boolean = L_fnGrabarMateria(tbCodigo.Text, tbnombre.Text, tbdescripcion.Text, IIf(swespecial.Value = True, 1, 0), IIf(swEstado.Value = True, 1, 0))
+        Dim res As Boolean = L_fnGrabarMateria(tbCodigo.Text, tbnombre.Text, cbarea.Value, IIf(swespecial.Value = True, 1, 0), IIf(swEstado.Value = True, 1, 0))
 
 
         If res Then
@@ -204,7 +229,7 @@ Public Class F1_Materia
     End Function
 
     Public Overrides Function _PMOModificarRegistro() As Boolean
-        Dim res As Boolean = L_fnModificarMateria(tbCodigo.Text, tbnombre.Text, tbdescripcion.Text, IIf(swespecial.Value = True, 1, 0), IIf(swEstado.Value = True, 1, 0))
+        Dim res As Boolean = L_fnModificarMateria(tbCodigo.Text, tbnombre.Text, cbarea.Value, IIf(swespecial.Value = True, 1, 0), IIf(swEstado.Value = True, 1, 0)) 'ojo
 
         If res Then
 
@@ -286,6 +311,15 @@ Public Class F1_Materia
             tbnombre.BackColor = Color.White
             MEP.SetError(tbnombre, "")
         End If
+        If cbarea.SelectedIndex < 0 Then
+            cbarea.BackColor = Color.Red
+
+            MEP.SetError(cbarea, "Seleccione un Area!".ToUpper)
+            _ok = False
+        Else
+            cbarea.BackColor = Color.White
+            MEP.SetError(cbarea, "")
+        End If
         MHighlighterFocus.UpdateHighlights()
         Return _ok
     End Function
@@ -301,7 +335,9 @@ Public Class F1_Materia
         ',cast(a.maestado as bit) as maestado ,a.mafact ,a.mahact ,a.mauact 
         listEstCeldas.Add(New Modelo.Celda("manumi", True, "Código".ToUpper, 80))
         listEstCeldas.Add(New Modelo.Celda("manombre", True, "NOMBRE MATERIA".ToUpper, 220))
-        listEstCeldas.Add(New Modelo.Celda("madescripcion", True, "DESCRIPCION", 200))
+        listEstCeldas.Add(New Modelo.Celda("maarea", False, "CArea".ToUpper, 80))
+        listEstCeldas.Add(New Modelo.Celda("descr", True, "Area".ToUpper, 200))
+        'listEstCeldas.Add(New Modelo.Celda("madescripcion", True, "DESCRIPCION", 200)) 'ojo
         listEstCeldas.Add(New Modelo.Celda("maespecial", True, "Es Especial".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("maestado", True, "Estado".ToUpper, 100))
         listEstCeldas.Add(New Modelo.Celda("mafact", False))
@@ -325,7 +361,8 @@ Public Class F1_Materia
         With JGrM_Buscador
             tbCodigo.Text = .GetValue("manumi").ToString
             tbnombre.Text = .GetValue("manombre").ToString
-            tbdescripcion.Text = .GetValue("madescripcion").ToString
+            'tbdescripcion.Text = .GetValue("madescripcion").ToString
+            cbarea.Value = .GetValue("maarea")
             swespecial.Value = .GetValue("maespecial")
             swEstado.Value = .GetValue("maestado")
             lbFecha.Text = CType(.GetValue("mafact"), Date).ToString("dd/MM/yyyy")
@@ -376,6 +413,16 @@ Public Class F1_Materia
             _tab.Close()
         End If
     End Sub
+
+
+    Private Sub cbarea_ValueChanged(sender As Object, e As EventArgs) Handles cbarea.ValueChanged
+        'If cbarea.SelectedIndex < 0 And cbarea.Text <> String.Empty Then
+        '    btcbnivel.Visible = True
+        'Else
+        '    btcbnivel.Visible = False
+        'End If
+    End Sub
+
 
 #End Region
 End Class

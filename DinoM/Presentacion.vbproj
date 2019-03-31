@@ -277,6 +277,12 @@
     <Compile Include="P_Principal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reporte\R_ListaAlumnos.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ListaAlumnos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utils\Efecto.Designer.vb">
       <DependentUpon>Efecto.vb</DependentUpon>
     </Compile>
@@ -327,6 +333,9 @@
     <EmbeddedResource Include="ABM School\F1_curso.resx">
       <DependentUpon>F1_curso.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM School\F1_Inscripcion.resx">
+      <DependentUpon>F1_Inscripcion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM School\F1_MapaCLientes.resx">
       <DependentUpon>F1_MapaCLientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -372,6 +381,10 @@
     <EmbeddedResource Include="P_Principal.resx">
       <DependentUpon>P_Principal.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ListaAlumnos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ListaAlumnos.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Utils\Efecto.resx">
       <DependentUpon>Efecto.vb</DependentUpon>
@@ -717,9 +730,7 @@
     <None Include="Resources\pdf.png" />
     <None Include="Resources\txt.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reporte\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

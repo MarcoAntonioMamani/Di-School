@@ -526,6 +526,16 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_prprofesores() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_PO001", _listParam)
+
+        Return _Tabla
+    End Function
     Public Shared Function L_prLibreriaClienteLGeneralZonas() As DataTable
         Dim _Tabla As DataTable
 
@@ -871,6 +881,154 @@ Public Class AccesoLogica
     End Function
 #End Region
 
+
+#Region "Inscripcion-School"
+
+    Public Shared Function L_fnGeneralInscripion() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGeneralAlumnoCurso() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGeneralCursoParalelo() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGeneralInscripcionMaterias(numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@isnumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneralInscripcionMateriasAyuda(numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@isnumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+    Public Shared Function L_fnEliminarInscripcion(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        'If L_fnbValidarEliminacion(numi, "TIT00111", "tinumi", mensaje) = True Then
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@isnumi", numi))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        'Else
+        '    _resultado = False
+        'End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarInscripcion(ByRef _isnumi As String, _isfecha As String,
+                                           _isal001 As Integer, _iscu001 As Integer, _isparalelo As Integer,
+                                           _isconcepto As Integer, _isdescripcion As String, _dt As DataTable) As Boolean
+        Dim _resultado As Boolean
+        '@isnumi ,@isfecha  ,@isal001  ,@iscu001  ,@isparalelo  ,@isconcepto  ,@isdescripcion  
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@isnumi", _isnumi))
+        _listParam.Add(New Datos.DParametro("@isfecha", _isfecha))
+        _listParam.Add(New Datos.DParametro("@isal001", _isal001))
+        _listParam.Add(New Datos.DParametro("@iscu001", _iscu001))
+        _listParam.Add(New Datos.DParametro("@isparalelo", _isparalelo))
+        _listParam.Add(New Datos.DParametro("@isconcepto", _isconcepto))
+        _listParam.Add(New Datos.DParametro("@isdescripcion", _isdescripcion))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@IS0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _isnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarInscripcion(ByRef _isnumi As String, _isfecha As String,
+                                           _isal001 As Integer, _iscu001 As Integer, _isparalelo As Integer,
+                                           _isconcepto As Integer, _isdescripcion As String, _dt As DataTable) As Boolean
+        Dim _resultado As Boolean
+        '@isnumi ,@isfecha  ,@isal001  ,@iscu001  ,@isparalelo  ,@isconcepto  ,@isdescripcion  
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@isnumi", _isnumi))
+        _listParam.Add(New Datos.DParametro("@isfecha", _isfecha))
+        _listParam.Add(New Datos.DParametro("@isal001", _isal001))
+        _listParam.Add(New Datos.DParametro("@iscu001", _iscu001))
+        _listParam.Add(New Datos.DParametro("@isparalelo", _isparalelo))
+        _listParam.Add(New Datos.DParametro("@isconcepto", _isconcepto))
+        _listParam.Add(New Datos.DParametro("@isdescripcion", _isdescripcion))
+        _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@IS0011", "", _dt))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _isnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+#End Region
+
 #Region "Profesor"
 
     Public Shared Function L_fnGeneralProfesor() As DataTable
@@ -1020,7 +1178,7 @@ Public Class AccesoLogica
         'End If
         Return _resultado
     End Function
-    Public Shared Function L_fnGrabarMateria(ByRef _manumi As String, _manombre As String, _madescripcion As String, _maespecial As Integer, _maestado As Integer) As Boolean
+    Public Shared Function L_fnGrabarMateria(ByRef _manumi As String, _manombre As String, _maarea As String, _maespecial As Integer, _maestado As Integer) As Boolean
         Dim _resultado As Boolean
         '@manumi ,@manombre  ,@madescripcion ,@maespecial  ,@maestado
         Dim _Tabla As DataTable
@@ -1029,7 +1187,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tipo", 1))
         _listParam.Add(New Datos.DParametro("@manumi", _manumi))
         _listParam.Add(New Datos.DParametro("@manombre", _manombre))
-        _listParam.Add(New Datos.DParametro("@madescripcion", _madescripcion))
+        _listParam.Add(New Datos.DParametro("@maarea", _maarea))
         _listParam.Add(New Datos.DParametro("@maespecial", _maespecial))
         _listParam.Add(New Datos.DParametro("@maestado", _maestado))
         _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))
@@ -1045,7 +1203,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
-    Public Shared Function L_fnModificarMateria(ByRef _manumi As String, _manombre As String, _madescripcion As String, _maespecial As Integer, _maestado As Integer) As Boolean
+    Public Shared Function L_fnModificarMateria(ByRef _manumi As String, _manombre As String, _maarea As String, _maespecial As Integer, _maestado As Integer) As Boolean
         Dim _resultado As Boolean
         '@manumi ,@manombre  ,@madescripcion ,@maespecial  ,@maestado
         Dim _Tabla As DataTable
@@ -1054,7 +1212,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tipo", 2))
         _listParam.Add(New Datos.DParametro("@manumi", _manumi))
         _listParam.Add(New Datos.DParametro("@manombre", _manombre))
-        _listParam.Add(New Datos.DParametro("@madescripcion", _madescripcion))
+        _listParam.Add(New Datos.DParametro("@maarea", _maarea))
         _listParam.Add(New Datos.DParametro("@maespecial", _maespecial))
         _listParam.Add(New Datos.DParametro("@maestado", _maestado))
         _listParam.Add(New Datos.DParametro("@cnuact", L_Usuario))

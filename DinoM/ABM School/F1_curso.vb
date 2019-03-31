@@ -27,6 +27,7 @@ Public Class F1_curso
         _prCargarComboLibreria(cbgrado, 7, 2)
         _prCargarComboLibreria(cbparalelo, 7, 4)
         _prCargarComboLibreria(cbgestion, 7, 1)
+        _prCargarComboProfesores(cbtutor)
         _prAsignarPermisos()
         _PMIniciarTodo()
         SuperTabControl1.SelectedTabIndex = 0
@@ -127,7 +128,7 @@ Public Class F1_curso
         End With
         With grparalelo.RootTable.Columns("cbparalelo")
             .Width = 150
-            .Visible = True
+            .Visible = False
             .Caption = "Codigo Paralelo".ToUpper
         End With
         With grparalelo.RootTable.Columns("paralelo")
@@ -135,6 +136,11 @@ Public Class F1_curso
             .Visible = True
             .Caption = "PARALELO"
         End With
+        'With grparalelo.RootTable.Columns("nombrep")
+        '    .Width = 250
+        '    .Visible = True
+        '    .Caption = "TUTOR"
+        'End With
         With grparalelo.RootTable.Columns("estado")
             .Width = 90
             .Visible = False
@@ -289,11 +295,12 @@ Public Class F1_curso
     End Sub
 
     Public Sub _prMaxLength()
-        tbdescripcion.MaxLength = 150
+        'tbdescripcion.MaxLength = 150
         cbnivel.MaxLength = 40
         cbgrado.MaxLength = 40
         cbparalelo.MaxLength = 40
         cbgestion.MaxLength = 40
+        cbtutor.MaxLength = 80
     End Sub
 
     Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
@@ -307,6 +314,22 @@ Public Class F1_curso
             .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
             .ValueMember = "yccod3"
             .DisplayMember = "ycdes3"
+            .DataSource = dt
+            .Refresh()
+        End With
+
+    End Sub
+    Private Sub _prCargarComboProfesores(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_prprofesores()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("ponumi").Width = 70
+            .DropDownList.Columns("ponumi").Caption = "COD"
+            .DropDownList.Columns.Add("nombre").Width = 200
+            .DropDownList.Columns("nombre").Caption = "DESCRIPCION"
+            .ValueMember = "ponumi"
+            .DisplayMember = "nombre"
             .DataSource = dt
             .Refresh()
         End With
@@ -340,11 +363,12 @@ Public Class F1_curso
     Public Overrides Sub _PMOHabilitar()
 
 
-        tbdescripcion.ReadOnly = False
+        'tbdescripcion.ReadOnly = False
         cbgestion.ReadOnly = False
         cbparalelo.ReadOnly = False
         cbgrado.ReadOnly = False
         cbnivel.ReadOnly = False
+        cbtutor.ReadOnly = False
         swEstado.IsReadOnly = False
 
         PanelDatosTelefono.Visible = True
@@ -361,6 +385,9 @@ Public Class F1_curso
         If (CType(cbnivel.DataSource, DataTable).Rows.Count > 0) Then
             cbnivel.SelectedIndex = 0
         End If
+        If (CType(cbtutor.DataSource, DataTable).Rows.Count > 0) Then
+            cbtutor.SelectedIndex = 0
+        End If
         grdetalle_telefono.RootTable.Columns("img").Visible = True
         grparalelo.RootTable.Columns("img").Visible = True
         btnImprimir.Visible = False
@@ -370,11 +397,12 @@ Public Class F1_curso
 
 
         tbCodigo.ReadOnly = True
-        tbdescripcion.ReadOnly = True
+        'tbdescripcion.ReadOnly = True
         cbgestion.ReadOnly = True
         cbparalelo.ReadOnly = True
         cbgrado.ReadOnly = True
         cbnivel.ReadOnly = True
+        cbtutor.ReadOnly = True
         swEstado.IsReadOnly = True
         PanelDatosTelefono.Visible = False
         JGrM_Buscador.Focus()
@@ -387,7 +415,7 @@ Public Class F1_curso
 
     Public Overrides Sub _PMOLimpiar()
         tbCodigo.Clear()
-        tbdescripcion.Clear()
+        'tbdescripcion.Clear()
         _IdProfesor = 0
         tbprofesor.Clear()
         tbmateria.Clear()
@@ -406,6 +434,9 @@ Public Class F1_curso
         If (CType(cbnivel.DataSource, DataTable).Rows.Count > 0) Then
             cbnivel.SelectedIndex = 0
         End If
+        If (CType(cbtutor.DataSource, DataTable).Rows.Count > 0) Then
+            cbtutor.SelectedIndex = 0
+        End If
     End Sub
     Public Sub _prSeleccionarCombo(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         If (CType(mCombo.DataSource, DataTable).Rows.Count > 0) Then
@@ -418,13 +449,12 @@ Public Class F1_curso
 
     Public Overrides Sub _PMOLimpiarErrores()
         MEP.Clear()
-        tbdescripcion.BackColor = Color.White
+        'tbdescripcion.BackColor = Color.White
         cbgestion.BackColor = Color.White
         cbgrado.BackColor = Color.White
         cbparalelo.BackColor = Color.White
         cbnivel.BackColor = Color.White
-
-
+        cbtutor.BackColor = Color.White
     End Sub
 
     Public Overrides Function _PMOGrabarRegistro() As Boolean
@@ -435,7 +465,7 @@ Public Class F1_curso
 
         Dim numi As String = ""
 
-        Dim res As Boolean = L_fnGrabarCurso(numi, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), CType(grparalelo.DataSource, DataTable))
+        Dim res As Boolean = L_fnGrabarCurso(numi, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), CType(grparalelo.DataSource, DataTable)) 'ojo 
 
 
         If res Then
@@ -464,7 +494,7 @@ Public Class F1_curso
     Public Overrides Function _PMOModificarRegistro() As Boolean
         Dim res As Boolean
 
-        res = L_fnModificarCurso(tbCodigo.Text, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), CType(grparalelo.DataSource, DataTable))
+        res = L_fnModificarCurso(tbCodigo.Text, tbdescripcion.Text, cbnivel.Value, cbgrado.Value, cbparalelo.Value, cbgestion.Value, _IdProfesor, IIf(swEstado.Value = True, 1, 0), CType(grdetalle_telefono.DataSource, DataTable), CType(grparalelo.DataSource, DataTable)) 'ojo
 
         If res Then
 
@@ -630,7 +660,7 @@ Public Class F1_curso
         End Try
         With JGrM_Buscador
             tbCodigo.Text = .GetValue("cunumi").ToString
-            tbdescripcion.Text = .GetValue("cudescripcion").ToString
+            'tbdescripcion.Text = .GetValue("cudescripcion").ToString
             cbnivel.Value = .GetValue("cunivel")
             cbgrado.Value = .GetValue("cugrado")
             cbparalelo.Value = .GetValue("cuparalelo")
@@ -821,7 +851,7 @@ Public Class F1_curso
                 Dim listEstCeldas As New List(Of Modelo.Celda)
                 listEstCeldas.Add(New Modelo.Celda("manumi,", True, "Codigo", 50))
                 listEstCeldas.Add(New Modelo.Celda("manombre", True, "Nombre Materia", 200))
-                listEstCeldas.Add(New Modelo.Celda("madescripcion", False, "Nombre Profesor", 280))
+                listEstCeldas.Add(New Modelo.Celda("maarea", False, "Area", 280))
                 listEstCeldas.Add(New Modelo.Celda("maespecial", True, "Es Especial?", 120))
                 listEstCeldas.Add(New Modelo.Celda("maestado", True, "Estado", 120))
 
@@ -891,6 +921,15 @@ Public Class F1_curso
             cbparalelo.BackColor = Color.White
             MEP.SetError(cbparalelo, "")
         End If
+        If cbtutor.SelectedIndex < 0 Then
+            cbtutor.BackColor = Color.Red
+
+            MEP.SetError(cbtutor, "seleccione un tutor!".ToUpper)
+
+        Else
+            cbtutor.BackColor = Color.White
+            MEP.SetError(cbtutor, "")
+        End If
         MHighlighterFocus.UpdateHighlights()
         Return _ok
     End Function
@@ -898,8 +937,8 @@ Public Class F1_curso
         If (_fnvalidardatos() = True) Then
             cbparalelo.BackColor = Color.White
             MEP.SetError(cbparalelo, "")
-            cbparalelo.BackColor = Color.White
-            MEP.SetError(cbparalelo, "")
+            cbtutor.BackColor = Color.White
+            MEP.SetError(cbtutor, "")
             Dim Bin As New MemoryStream
             Dim img As New Bitmap(My.Resources.delete, 28, 28)
             img.Save(Bin, Imaging.ImageFormat.Png)
