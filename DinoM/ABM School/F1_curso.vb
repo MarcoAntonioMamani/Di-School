@@ -404,6 +404,7 @@ Public Class F1_curso
         cbnivel.ReadOnly = True
         cbtutor.ReadOnly = True
         swEstado.IsReadOnly = True
+        tbdescripcion.ReadOnly = True
         PanelDatosTelefono.Visible = False
         JGrM_Buscador.Focus()
         Limpiar = False

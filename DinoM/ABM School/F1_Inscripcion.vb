@@ -490,7 +490,7 @@ Public Class F1_Inscripcion
         listEstCeldas.Add(New Modelo.Celda("cugrado", False))
         listEstCeldas.Add(New Modelo.Celda("grado", True, "Grado".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("isparalelo", False))
-        listEstCeldas.Add(New Modelo.Celda("paralelo", False, "paralelo".ToUpper, 120))
+        listEstCeldas.Add(New Modelo.Celda("paralelo", True, "paralelo".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("cunivel", False))
         listEstCeldas.Add(New Modelo.Celda("nivel", True, "nivel".ToUpper, 120))
         listEstCeldas.Add(New Modelo.Celda("cugestion", False))

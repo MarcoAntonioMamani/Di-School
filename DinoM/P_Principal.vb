@@ -467,4 +467,21 @@ Public Class P_Principal
         tab3.Text = frm.Text
         tab3.Icon = frm.Icon
     End Sub
+
+    Private Sub btZonaReporteRuta_Click(sender As Object, e As EventArgs) Handles btZonaReporteRuta.Click
+        SideNav1.IsMenuExpanded = False
+
+        Dim frm As New Pr_ReporteInscripcion
+        frm._nameButton = btZonas.Name
+
+        Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        frm._tab = tab3
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        Ventana.Select()
+        frm.Show()
+        tab3.Text = frm.Text
+
+    End Sub
 End Class

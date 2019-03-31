@@ -658,22 +658,34 @@ Public Class F1_Alumno
 
     Public Overrides Function _PMOGetListEstructuraBuscador() As List(Of Modelo.Celda)
         Dim listEstCeldas As New List(Of Modelo.Celda)
-        'a.alnumi, alrude, a.altipdoc, libreria.ycdes3 As documento, a.alnrodoc,
-        'concat(alnombre,' ',alapellido_p ,' ',alapellido_m )as nombre,aldirec ,
-        'alemail, alfnac, alestado, alfact, alhact, aluact, alnombre, alapellido_p, alapellido_m,altelf 
-        listEstCeldas.Add(New Modelo.Celda("alnumi", True, "Código".ToUpper, 80))
+        '      Case a.alnumi,alrude,a.altipdoc,libreria .ycdes3 As documento,a.alnrodoc ,
+        '     concat(alnombre,' ',alapellido_p ,' ',alapellido_m )as nombre,aldirec ,
+        '     alemail, alfnac, alestado, alfact, alhact, aluact, alnombre, alapellido_p, alapellido_m, altelf, isnull(a.allat, 0) as allat
+        ',isnull(a.allongi,0) as allongi ,isnull(a.alimg,'')as alimg ,a.allibro,a.alpartida,a.alfolio,a.alnacionalidad,a.aldepartamento,
+        'a.alprovincia, a.allocalidad, a.alsexo, libreria1.ycdes3 As nacionalidad, libreria2.ycdes3 as departamento 
+        listEstCeldas.Add(New Modelo.Celda("allibro", False))
+        listEstCeldas.Add(New Modelo.Celda("alpartida", False))
+        listEstCeldas.Add(New Modelo.Celda("alfolio", False))
+        listEstCeldas.Add(New Modelo.Celda("alnacionalidad", False))
+        listEstCeldas.Add(New Modelo.Celda("aldepartamento", False))
+        listEstCeldas.Add(New Modelo.Celda("alprovincia", False))
+        listEstCeldas.Add(New Modelo.Celda("allocalidad", False))
+        listEstCeldas.Add(New Modelo.Celda("alsexo", False))
+        listEstCeldas.Add(New Modelo.Celda("nacionalidad", True, "Nacionalidad", 150))
+        listEstCeldas.Add(New Modelo.Celda("departamento", True, "Departamento", 150))
+        listEstCeldas.Add(New Modelo.Celda("alnumi", True, "Código", 80))
         listEstCeldas.Add(New Modelo.Celda("alrude", True, "Nro Rude", 150))
         listEstCeldas.Add(New Modelo.Celda("altipdoc", False))
-        listEstCeldas.Add(New Modelo.Celda("documento", True, "Tipo Documento".ToUpper, 150))
-        listEstCeldas.Add(New Modelo.Celda("alnrodoc", True, "Nro Documento".ToUpper, 250))
+        listEstCeldas.Add(New Modelo.Celda("documento", True, "Tipo Documento", 140))
+        listEstCeldas.Add(New Modelo.Celda("alnrodoc", True, "Nro Documento", 180))
         listEstCeldas.Add(New Modelo.Celda("alnombre", False))
         listEstCeldas.Add(New Modelo.Celda("alapellido_p", False))
         listEstCeldas.Add(New Modelo.Celda("alapellido_m", False))
-        listEstCeldas.Add(New Modelo.Celda("nombre", True, "Nombre Alumno".ToUpper, 220))
-        listEstCeldas.Add(New Modelo.Celda("aldirec", True, "Direccion".ToUpper, 150))
-        listEstCeldas.Add(New Modelo.Celda("altelf", True, "Telelfono".ToUpper, 150))
+        listEstCeldas.Add(New Modelo.Celda("nombre", True, "Nombre Alumno", 350))
+        listEstCeldas.Add(New Modelo.Celda("aldirec", True, "Direccion", 160))
+        listEstCeldas.Add(New Modelo.Celda("altelf", False, "Telelfono", 140))
         listEstCeldas.Add(New Modelo.Celda("alfnac", False))
-        listEstCeldas.Add(New Modelo.Celda("alestado", False, "Estado".ToUpper, 100))
+        listEstCeldas.Add(New Modelo.Celda("alestado", False, "Estado", 100))
         listEstCeldas.Add(New Modelo.Celda("alfact", False))
         listEstCeldas.Add(New Modelo.Celda("alhact", False))
         listEstCeldas.Add(New Modelo.Celda("aluact", False))

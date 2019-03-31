@@ -209,6 +209,12 @@
     <Compile Include="ABM School\F1_Titulares.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM School\Pr_ReporteInscripcion.Designer.vb">
+      <DependentUpon>Pr_ReporteInscripcion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM School\Pr_ReporteInscripcion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Control\Imageus.Designer.vb">
       <DependentUpon>Imageus.vb</DependentUpon>
     </Compile>
@@ -283,6 +289,12 @@
       <DependentUpon>R_ListaAlumnos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporte\R_ReporteInscritos.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReporteInscritos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utils\Efecto.Designer.vb">
       <DependentUpon>Efecto.vb</DependentUpon>
     </Compile>
@@ -348,6 +360,9 @@
     <EmbeddedResource Include="ABM School\F1_Titulares.resx">
       <DependentUpon>F1_Titulares.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM School\Pr_ReporteInscripcion.resx">
+      <DependentUpon>Pr_ReporteInscripcion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Imageus.resx">
       <DependentUpon>Imageus.vb</DependentUpon>
     </EmbeddedResource>
@@ -385,6 +400,10 @@
     <EmbeddedResource Include="Reporte\R_ListaAlumnos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ListaAlumnos.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\R_ReporteInscritos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReporteInscritos.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Utils\Efecto.resx">
       <DependentUpon>Efecto.vb</DependentUpon>

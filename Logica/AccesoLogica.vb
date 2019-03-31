@@ -536,6 +536,18 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+
+    Public Shared Function fn_Listarinscritos(_gestion As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@gestion", _gestion))
+        _Tabla = D_ProcedimientoConParam("SP_MAM_IS001", _listParam)
+
+        Return _Tabla
+    End Function
     Public Shared Function L_prLibreriaClienteLGeneralZonas() As DataTable
         Dim _Tabla As DataTable
 
