@@ -17,6 +17,7 @@ Public Class F1_Inscripcion
     Public _nameButton As String
     Public _tab As SuperTabItem
     Dim _IdCurso As Integer = 0
+    Dim _IdParalelo As Integer = 0
     Dim _IdAlumno As Integer = 0
     Public _modulo As SideNavItem
     Public Limpiar As Boolean = False  'Bandera para indicar si limpiar todos los datos o mantener datos ya registrados
@@ -26,10 +27,10 @@ Public Class F1_Inscripcion
 
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         _prMaxLength()
-        _prCargarComboLibreria(cbnivel, 7, 3)
-        _prCargarComboLibreria(cbgrado, 7, 2)
-        _prCargarComboLibreria(cbparalelo, 7, 4)
-        _prCargarComboLibreria(cbgestion, 7, 1)
+        '_prCargarComboLibreria(cbnivel, 7, 3)
+        '_prCargarComboLibreria(cbgrado, 7, 2)
+        '_prCargarComboLibreria(cbparalelo, 7, 4)
+        '_prCargarComboLibreria(cbgestion, 7, 1)
         _prCargarComboLibreria(cbconcepto, 8, 1)
         _prAsignarPermisos()
         _PMIniciarTodo()
@@ -188,10 +189,10 @@ Public Class F1_Inscripcion
 
     Public Sub _prMaxLength()
         tbdescripcion.MaxLength = 150
-        cbnivel.MaxLength = 40
-        cbgrado.MaxLength = 40
-        cbparalelo.MaxLength = 40
-        cbgestion.MaxLength = 40
+        'cbnivel.MaxLength = 40
+        'cbgrado.MaxLength = 40
+        'cbparalelo.MaxLength = 40
+        'cbgestion.MaxLength = 40
         cbconcepto.MaxLength = 40
 
     End Sub
@@ -241,25 +242,25 @@ Public Class F1_Inscripcion
 
 
         tbdescripcion.ReadOnly = False
-        cbgestion.ReadOnly = False
-        cbparalelo.ReadOnly = False
-        cbgrado.ReadOnly = False
-        cbnivel.ReadOnly = False
+        'cbgestion.ReadOnly = False
+        'cbparalelo.ReadOnly = False
+        'cbgrado.ReadOnly = False
+        'cbnivel.ReadOnly = False
         cbconcepto.ReadOnly = False
         tbFechaNac.IsInputReadOnly = False
 
-        If (CType(cbgestion.DataSource, DataTable).Rows.Count > 0) Then
-            cbgestion.SelectedIndex = 0
-        End If
-        If (CType(cbparalelo.DataSource, DataTable).Rows.Count > 0) Then
-            cbparalelo.SelectedIndex = 0
-        End If
-        If (CType(cbgrado.DataSource, DataTable).Rows.Count > 0) Then
-            cbgrado.SelectedIndex = 0
-        End If
-        If (CType(cbnivel.DataSource, DataTable).Rows.Count > 0) Then
-            cbnivel.SelectedIndex = 0
-        End If
+        'If (CType(cbgestion.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbgestion.SelectedIndex = 0
+        'End If
+        'If (CType(cbparalelo.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbparalelo.SelectedIndex = 0
+        'End If
+        'If (CType(cbgrado.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbgrado.SelectedIndex = 0
+        'End If
+        'If (CType(cbnivel.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbnivel.SelectedIndex = 0
+        'End If
         If (CType(cbconcepto.DataSource, DataTable).Rows.Count > 0) Then
             cbconcepto.SelectedIndex = 0
         End If
@@ -272,10 +273,10 @@ Public Class F1_Inscripcion
 
         tbCodigo.ReadOnly = True
         tbdescripcion.ReadOnly = True
-        cbgestion.ReadOnly = True
-        cbparalelo.ReadOnly = True
-        cbgrado.ReadOnly = True
-        cbnivel.ReadOnly = True
+        'cbgestion.ReadOnly = True
+        'cbparalelo.ReadOnly = True
+        'cbgrado.ReadOnly = True
+        'cbnivel.ReadOnly = True
         cbconcepto.ReadOnly = True
         tbFechaNac.IsInputReadOnly = True
         JGrM_Buscador.Focus()
@@ -287,21 +288,22 @@ Public Class F1_Inscripcion
         tbCodigo.Clear()
         tbdescripcion.Clear()
         _IdCurso = 0
+        _IdParalelo = 0
         tbprofesor.Clear()
         tbalumno.Clear()
         _prCargarDetalleMaterias(-1)
-        If (CType(cbgestion.DataSource, DataTable).Rows.Count > 0) Then
-            cbgestion.SelectedIndex = 0
-        End If
-        If (CType(cbparalelo.DataSource, DataTable).Rows.Count > 0) Then
-            cbparalelo.SelectedIndex = 0
-        End If
-        If (CType(cbgrado.DataSource, DataTable).Rows.Count > 0) Then
-            cbgrado.SelectedIndex = 0
-        End If
-        If (CType(cbnivel.DataSource, DataTable).Rows.Count > 0) Then
-            cbnivel.SelectedIndex = 0
-        End If
+        'If (CType(cbgestion.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbgestion.SelectedIndex = 0
+        'End If
+        'If (CType(cbparalelo.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbparalelo.SelectedIndex = 0
+        'End If
+        'If (CType(cbgrado.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbgrado.SelectedIndex = 0
+        'End If
+        'If (CType(cbnivel.DataSource, DataTable).Rows.Count > 0) Then
+        '    cbnivel.SelectedIndex = 0
+        'End If
         If (CType(cbconcepto.DataSource, DataTable).Rows.Count > 0) Then
             cbconcepto.SelectedIndex = 0
         End If
@@ -320,10 +322,10 @@ Public Class F1_Inscripcion
     Public Overrides Sub _PMOLimpiarErrores()
         MEP.Clear()
         tbdescripcion.BackColor = Color.White
-        cbgestion.BackColor = Color.White
-        cbgrado.BackColor = Color.White
-        cbparalelo.BackColor = Color.White
-        cbnivel.BackColor = Color.White
+        'cbgestion.BackColor = Color.White
+        'cbgrado.BackColor = Color.White
+        'cbparalelo.BackColor = Color.White
+        'cbnivel.BackColor = Color.White
 
 
     End Sub
@@ -336,7 +338,7 @@ Public Class F1_Inscripcion
 
         Dim numi As String = ""
 
-        Dim res As Boolean = L_fnGrabarInscripcion(numi, tbFechaNac.Value.ToString("yyyy/MM/dd"), _IdAlumno, _IdCurso, cbparalelo.Value, cbconcepto.Value, tbdescripcion.Text, CType(grdetalle_materia.DataSource, DataTable))
+        Dim res As Boolean = L_fnGrabarInscripcion(numi, tbFechaNac.Value.ToString("yyyy/MM/dd"), _IdAlumno, _IdCurso, _IdParalelo, cbconcepto.Value, tbdescripcion.Text, CType(grdetalle_materia.DataSource, DataTable))
 
 
         If res Then
@@ -353,6 +355,7 @@ Public Class F1_Inscripcion
             tbCodigo.Focus()
             Limpiar = True
             _IdCurso = 0
+            _IdParalelo = 0
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "La Inscripcion no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
@@ -365,7 +368,7 @@ Public Class F1_Inscripcion
     Public Overrides Function _PMOModificarRegistro() As Boolean
         Dim res As Boolean
 
-        res = L_fnModificarInscripcion(tbCodigo.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), _IdAlumno, _IdCurso, cbparalelo.Value, cbconcepto.Value, tbdescripcion.Text, CType(grdetalle_materia.DataSource, DataTable))
+        res = L_fnModificarInscripcion(tbCodigo.Text, tbFechaNac.Value.ToString("yyyy/MM/dd"), _IdAlumno, _IdCurso, _IdParalelo, cbconcepto.Value, tbdescripcion.Text, CType(grdetalle_materia.DataSource, DataTable))
 
         If res Then
 
@@ -519,15 +522,12 @@ Public Class F1_Inscripcion
         With JGrM_Buscador
             tbCodigo.Text = .GetValue("isnumi").ToString
             tbdescripcion.Text = .GetValue("isdescripcion").ToString
-            cbnivel.Value = .GetValue("cunivel")
-            cbgrado.Value = .GetValue("cugrado")
-            cbparalelo.Value = .GetValue("isparalelo")
-            cbgestion.Value = .GetValue("cugestion")
+            _IdParalelo = .GetValue("isparalelo")
             tbFechaNac.Value = .GetValue("isfecha")
             _IdCurso = .GetValue("iscu001")
             _IdAlumno = .GetValue("isal001")
             tbalumno.Text = .GetValue("alumno").ToString
-            tbprofesor.Text = .GetValue("titular").ToString
+            tbprofesor.Text = .GetValue("grado").ToString + " " + .GetValue("nivel").ToString + " " + .GetValue("paralelo").ToString
             cbconcepto.Value = .GetValue("isconcepto")
             lbFecha.Text = CType(.GetValue("isfact"), Date).ToString("dd/MM/yyyy")
             lbHora.Text = .GetValue("ishact").ToString
@@ -676,11 +676,8 @@ Public Class F1_Inscripcion
                     'a.cugestion , gestion.ycdes3 As gestion, paralelo.cbparalelo, UPPER(libreria.ycdes3) as paralelo
                     ',a.cupo001 ,concat(profesor .ponombre ,' ',profesor .poapellido_p ,' ',profesor .poapellido_m )as profesor
                     _IdCurso = Row.Cells("cunumi").Value
-                    tbprofesor.Text = Row.Cells("profesor").Value
-                    cbparalelo.Value = Row.Cells("cbparalelo").Value
-                    cbgrado.Value = Row.Cells("cugrado").Value
-                    cbnivel.Value = Row.Cells("cunivel").Value
-                    cbgestion.Value = Row.Cells("cugestion").Value
+                    tbprofesor.Text = Row.Cells("grado").Value + " " + Row.Cells("nivel").Value + " " + Row.Cells("paralelo").Value
+                    _IdParalelo = Row.Cells("cbparalelo").Value
                     _prCargarDetalleMateriasAyuda(_IdCurso)
                 End If
 

@@ -23,20 +23,11 @@ Partial Class Pr_ListaAlumnos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pr_ListaAlumnos))
-        Dim cbparalelo_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbgestion_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim cbgrado_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim cbnivel_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.tbprofesor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
-        Me.cbparalelo = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.cbgestion = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
-        Me.cbgrado = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.lbgrupo1 = New DevComponents.DotNetBar.LabelX()
-        Me.cbnivel = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -51,10 +42,7 @@ Partial Class Pr_ListaAlumnos
         Me.MGPFiltros.SuspendLayout()
         Me.PanelIzq.SuspendLayout()
         CType(Me.MPicture, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbparalelo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbgestion, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbgrado, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbnivel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -152,12 +140,6 @@ Partial Class Pr_ListaAlumnos
         '
         'MGPFiltros
         '
-        Me.MGPFiltros.Controls.Add(Me.LabelX3)
-        Me.MGPFiltros.Controls.Add(Me.cbgrado)
-        Me.MGPFiltros.Controls.Add(Me.lbgrupo1)
-        Me.MGPFiltros.Controls.Add(Me.cbnivel)
-        Me.MGPFiltros.Controls.Add(Me.cbparalelo)
-        Me.MGPFiltros.Controls.Add(Me.LabelX4)
         Me.MGPFiltros.Controls.Add(Me.LabelX5)
         Me.MGPFiltros.Controls.Add(Me.cbgestion)
         Me.MGPFiltros.Controls.Add(Me.tbprofesor)
@@ -227,42 +209,6 @@ Partial Class Pr_ListaAlumnos
         Me.LabelX6.TabIndex = 259
         Me.LabelX6.Text = "Curso:"
         '
-        'cbparalelo
-        '
-        Me.cbparalelo.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat
-        Me.cbparalelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        cbparalelo_DesignTimeLayout.LayoutString = resources.GetString("cbparalelo_DesignTimeLayout.LayoutString")
-        Me.cbparalelo.DesignTimeLayout = cbparalelo_DesignTimeLayout
-        Me.cbparalelo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbparalelo.Location = New System.Drawing.Point(136, 132)
-        Me.cbparalelo.Margin = New System.Windows.Forms.Padding(4)
-        Me.cbparalelo.Name = "cbparalelo"
-        Me.cbparalelo.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.cbparalelo.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.cbparalelo.SelectedIndex = -1
-        Me.cbparalelo.SelectedItem = Nothing
-        Me.cbparalelo.Size = New System.Drawing.Size(192, 26)
-        Me.cbparalelo.TabIndex = 260
-        Me.cbparalelo.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'LabelX4
-        '
-        Me.LabelX4.AutoSize = True
-        Me.LabelX4.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX4.Location = New System.Drawing.Point(63, 132)
-        Me.LabelX4.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX4.Name = "LabelX4"
-        Me.LabelX4.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX4.Size = New System.Drawing.Size(65, 19)
-        Me.LabelX4.TabIndex = 261
-        Me.LabelX4.Text = "Paralelo:"
-        '
         'LabelX5
         '
         Me.LabelX5.AutoSize = True
@@ -273,7 +219,7 @@ Partial Class Pr_ListaAlumnos
         Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX5.Location = New System.Drawing.Point(65, 163)
+        Me.LabelX5.Location = New System.Drawing.Point(65, 63)
         Me.LabelX5.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
@@ -288,7 +234,7 @@ Partial Class Pr_ListaAlumnos
         cbgestion_DesignTimeLayout.LayoutString = resources.GetString("cbgestion_DesignTimeLayout.LayoutString")
         Me.cbgestion.DesignTimeLayout = cbgestion_DesignTimeLayout
         Me.cbgestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbgestion.Location = New System.Drawing.Point(136, 166)
+        Me.cbgestion.Location = New System.Drawing.Point(136, 66)
         Me.cbgestion.Margin = New System.Windows.Forms.Padding(4)
         Me.cbgestion.Name = "cbgestion"
         Me.cbgestion.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
@@ -298,78 +244,6 @@ Partial Class Pr_ListaAlumnos
         Me.cbgestion.Size = New System.Drawing.Size(192, 26)
         Me.cbgestion.TabIndex = 262
         Me.cbgestion.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'LabelX3
-        '
-        Me.LabelX3.AutoSize = True
-        Me.LabelX3.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX3.Location = New System.Drawing.Point(76, 98)
-        Me.LabelX3.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX3.Name = "LabelX3"
-        Me.LabelX3.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX3.Size = New System.Drawing.Size(50, 19)
-        Me.LabelX3.TabIndex = 267
-        Me.LabelX3.Text = "Grado:"
-        '
-        'cbgrado
-        '
-        Me.cbgrado.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat
-        Me.cbgrado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        cbgrado_DesignTimeLayout.LayoutString = resources.GetString("cbgrado_DesignTimeLayout.LayoutString")
-        Me.cbgrado.DesignTimeLayout = cbgrado_DesignTimeLayout
-        Me.cbgrado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbgrado.Location = New System.Drawing.Point(136, 98)
-        Me.cbgrado.Margin = New System.Windows.Forms.Padding(4)
-        Me.cbgrado.Name = "cbgrado"
-        Me.cbgrado.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.cbgrado.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.cbgrado.SelectedIndex = -1
-        Me.cbgrado.SelectedItem = Nothing
-        Me.cbgrado.Size = New System.Drawing.Size(192, 26)
-        Me.cbgrado.TabIndex = 266
-        Me.cbgrado.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'lbgrupo1
-        '
-        Me.lbgrupo1.AutoSize = True
-        Me.lbgrupo1.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbgrupo1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbgrupo1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbgrupo1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbgrupo1.Location = New System.Drawing.Point(86, 63)
-        Me.lbgrupo1.Margin = New System.Windows.Forms.Padding(4)
-        Me.lbgrupo1.Name = "lbgrupo1"
-        Me.lbgrupo1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbgrupo1.Size = New System.Drawing.Size(42, 19)
-        Me.lbgrupo1.TabIndex = 265
-        Me.lbgrupo1.Text = "Nivel:"
-        '
-        'cbnivel
-        '
-        Me.cbnivel.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat
-        Me.cbnivel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        cbnivel_DesignTimeLayout.LayoutString = resources.GetString("cbnivel_DesignTimeLayout.LayoutString")
-        Me.cbnivel.DesignTimeLayout = cbnivel_DesignTimeLayout
-        Me.cbnivel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbnivel.Location = New System.Drawing.Point(136, 57)
-        Me.cbnivel.Margin = New System.Windows.Forms.Padding(4)
-        Me.cbnivel.Name = "cbnivel"
-        Me.cbnivel.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.cbnivel.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.cbnivel.SelectedIndex = -1
-        Me.cbnivel.SelectedItem = Nothing
-        Me.cbnivel.Size = New System.Drawing.Size(192, 26)
-        Me.cbnivel.TabIndex = 264
-        Me.cbnivel.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'Pr_ListaAlumnos
         '
@@ -396,22 +270,13 @@ Partial Class Pr_ListaAlumnos
         Me.MGPFiltros.PerformLayout()
         Me.PanelIzq.ResumeLayout(False)
         CType(Me.MPicture, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbparalelo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbgestion, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbgrado, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbnivel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents tbprofesor As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX6 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents cbparalelo As Janus.Windows.GridEX.EditControls.MultiColumnCombo
-    Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
     Friend WithEvents cbgestion As Janus.Windows.GridEX.EditControls.MultiColumnCombo
-    Friend WithEvents LabelX3 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents cbgrado As Janus.Windows.GridEX.EditControls.MultiColumnCombo
-    Friend WithEvents lbgrupo1 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents cbnivel As Janus.Windows.GridEX.EditControls.MultiColumnCombo
 End Class

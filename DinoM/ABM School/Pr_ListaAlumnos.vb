@@ -6,6 +6,7 @@ Public Class Pr_ListaAlumnos
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _IdCurso As Integer = 0
+    Public _IdParalelo As Integer = 0
 
     Public Sub _prIniciarTodo()
 
@@ -14,14 +15,10 @@ Public Class Pr_ListaAlumnos
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         Me.Text = "REPORTE DE ALUMNOS"
         MReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
-        _prCargarComboLibreria(cbnivel, 7, 3)
-        _prCargarComboLibreria(cbgrado, 7, 2)
-        _prCargarComboLibreria(cbparalelo, 7, 4)
+
         _prCargarComboLibreria(cbgestion, 7, 1)
         cbgestion.ReadOnly = True
-        cbgrado.ReadOnly = True
-        cbnivel.ReadOnly = True
-        cbparalelo.ReadOnly = True
+
         tbprofesor.ReadOnly = True
         tbprofesor.Focus()
     End Sub
@@ -60,7 +57,7 @@ Public Class Pr_ListaAlumnos
             Return
         End If
         Dim _dt As New DataTable
-        _dt = fn_ListarAlumnos(_IdCurso, cbparalelo.Value)
+        _dt = fn_ListarAlumnos(_IdCurso, _IdParalelo)
         If (_dt.Rows.Count > 0) Then
 
             Dim objrep As New R_ListaAlumnos
@@ -129,9 +126,7 @@ Public Class Pr_ListaAlumnos
                 ',a.cupo001 ,concat(profesor .ponombre ,' ',profesor .poapellido_p ,' ',profesor .poapellido_m )as profesor
                 _IdCurso = Row.Cells("cunumi").Value
                 tbprofesor.Text = Row.Cells("grado").Value + " " + Row.Cells("nivel").Value + " " + Row.Cells("paralelo").Value
-                cbparalelo.Value = Row.Cells("cbparalelo").Value
-                cbgrado.Value = Row.Cells("cugrado").Value
-                cbnivel.Value = Row.Cells("cunivel").Value
+                _IdParalelo = Row.Cells("cbparalelo").Value
                 cbgestion.Value = Row.Cells("cugestion").Value
 
             End If
