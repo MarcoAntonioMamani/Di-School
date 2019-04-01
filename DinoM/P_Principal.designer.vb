@@ -29,7 +29,7 @@ Partial Class P_Principal
         Me.MetroTilePanel2 = New DevComponents.DotNetBar.Metro.MetroTilePanel()
         Me.btZonas = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btZonaMapaCliente = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.btZonaReporteRuta = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btRepInscritos = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.SideNav_Conf = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.MetroTilePanel1 = New DevComponents.DotNetBar.Metro.MetroTilePanel()
@@ -99,6 +99,7 @@ Partial Class P_Principal
         Me.btAbout = New DevComponents.DotNetBar.RadialMenuItem()
         Me.lbUsuario = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.MetroTileItem11 = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btRepAlumnos = New DevComponents.DotNetBar.Metro.MetroTileItem()
         MetroTileFrame1 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         MetroTileFrame2 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         Me.SideNav1.SuspendLayout()
@@ -184,7 +185,7 @@ Partial Class P_Principal
         Me.MetroTilePanel2.ContainerControlProcessDialogKey = True
         Me.MetroTilePanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MetroTilePanel2.DragDropSupport = True
-        Me.MetroTilePanel2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btZonas, Me.btZonaMapaCliente, Me.btZonaReporteRuta})
+        Me.MetroTilePanel2.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btZonas, Me.btZonaMapaCliente, Me.btRepInscritos, Me.btRepAlumnos})
         Me.MetroTilePanel2.ItemSpacing = 10
         Me.MetroTilePanel2.Location = New System.Drawing.Point(0, 0)
         Me.MetroTilePanel2.Margin = New System.Windows.Forms.Padding(4)
@@ -236,26 +237,26 @@ Partial Class P_Principal
         Me.btZonaMapaCliente.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
         Me.btZonaMapaCliente.TitleTextColor = System.Drawing.Color.Red
         '
-        'btZonaReporteRuta
+        'btRepInscritos
         '
-        Me.btZonaReporteRuta.Image = Global.DinoM.My.Resources.Resources.hojaruta
-        Me.btZonaReporteRuta.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btZonaReporteRuta.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
-        Me.btZonaReporteRuta.Name = "btZonaReporteRuta"
-        Me.btZonaReporteRuta.SymbolColor = System.Drawing.Color.Empty
-        Me.btZonaReporteRuta.Text = "REPORTE DE INSCRITOS"
-        Me.btZonaReporteRuta.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Plum
-        Me.btZonaReporteRuta.TileSize = New System.Drawing.Size(250, 135)
+        Me.btRepInscritos.Image = Global.DinoM.My.Resources.Resources.hojaruta
+        Me.btRepInscritos.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btRepInscritos.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
+        Me.btRepInscritos.Name = "btRepInscritos"
+        Me.btRepInscritos.SymbolColor = System.Drawing.Color.Empty
+        Me.btRepInscritos.Text = "REPORTE DE INSCRITOS"
+        Me.btRepInscritos.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Plum
+        Me.btRepInscritos.TileSize = New System.Drawing.Size(250, 135)
         '
         '
         '
-        Me.btZonaReporteRuta.TileStyle.BackColor = System.Drawing.Color.Red
-        Me.btZonaReporteRuta.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btZonaReporteRuta.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.btZonaReporteRuta.TileStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btZonaReporteRuta.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
-        Me.btZonaReporteRuta.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
-        Me.btZonaReporteRuta.TitleTextColor = System.Drawing.Color.Red
+        Me.btRepInscritos.TileStyle.BackColor = System.Drawing.Color.Red
+        Me.btRepInscritos.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btRepInscritos.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btRepInscritos.TileStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btRepInscritos.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
+        Me.btRepInscritos.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
+        Me.btRepInscritos.TitleTextColor = System.Drawing.Color.Red
         '
         'PictureBox3
         '
@@ -1265,6 +1266,27 @@ Partial Class P_Principal
         Me.MetroTileItem11.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.MetroTileItem11.TitleText = "USUARIOS"
         '
+        'btRepAlumnos
+        '
+        Me.btRepAlumnos.Image = Global.DinoM.My.Resources.Resources.hojaruta
+        Me.btRepAlumnos.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btRepAlumnos.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
+        Me.btRepAlumnos.Name = "btRepAlumnos"
+        Me.btRepAlumnos.SymbolColor = System.Drawing.Color.Empty
+        Me.btRepAlumnos.Text = "REPORTE DE ALUMNOS"
+        Me.btRepAlumnos.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Plum
+        Me.btRepAlumnos.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btRepAlumnos.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(182, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btRepAlumnos.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(142, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.btRepAlumnos.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btRepAlumnos.TileStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btRepAlumnos.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
+        Me.btRepAlumnos.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
+        Me.btRepAlumnos.TitleTextColor = System.Drawing.Color.Red
+        '
         'P_Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1348,7 +1370,7 @@ Partial Class P_Principal
     Friend WithEvents btEscRepAlumnosSinPreExamen As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btSocRepSocioPagos As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btEscClasesTeoricas As DevComponents.DotNetBar.Metro.MetroTileItem
-    Friend WithEvents btZonaReporteRuta As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btRepInscritos As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btSocRepSocioPagosGral As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btSocRepSocioPagosMortuoriaGral As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btSocRepSocioListaSociosActivos As DevComponents.DotNetBar.Metro.MetroTileItem
@@ -1369,4 +1391,5 @@ Partial Class P_Principal
     Friend WithEvents btConfDosificacion As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents MetroTileItem11 As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btConfMateria As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btRepAlumnos As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

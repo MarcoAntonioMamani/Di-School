@@ -469,4 +469,8 @@ Public Class F1_Profesor
     Private Sub F1_Profesor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prIniciarTodo()
     End Sub
+
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+
+    End Sub
 End Class

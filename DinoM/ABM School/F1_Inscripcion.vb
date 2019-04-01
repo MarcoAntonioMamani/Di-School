@@ -711,13 +711,32 @@ Public Class F1_Inscripcion
     Private Sub grdetalle_materia_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles grdetalle_materia.CellEdited
         If (e.Column.Index = grdetalle_materia.RootTable.Columns("estado2").Index) Then
 
+            If (grdetalle_materia.GetValue("estado") = 1) Then
+                Dim pos As Integer
+                If (_fnobtenerfila(grdetalle_materia.GetValue("itnumi"), pos)) Then
+                    CType(grdetalle_materia.DataSource, DataTable).Rows(pos).Item("estado") = 2
+                End If
+            Else
+                grdetalle_materia.SetValue("estado", 0)
+            End If
 
-            grdetalle_materia.SetValue("estado", 1)
 
 
 
         End If
     End Sub
+
+    Public Function _fnobtenerfila(numi As Integer, ByRef pos As Integer) As Boolean
+
+        For i As Integer = 0 To CType(grdetalle_materia.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim codigo As Integer = CType(grdetalle_materia.DataSource, DataTable).Rows(i).Item("itnumi")
+            If (codigo = numi) Then
+                pos = i
+                Return True
+            End If
+        Next
+
+    End Function
 
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
 
